@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Manrope, Helvetica, OpenSans, sans-serif;
+  text-decoration: none;
+}
+
+.navbar-search-div {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 400px) {
+  .navbar-search-div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .navbar-search-btn {
+    margin-top: 10px;
+  }
+}
+
+
+.book-title {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: left;
+}
+
+.albums {
+  margin: 1rem;
+}
+#font {
+  text-decoration: none;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.Btn {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  background-color: #032c62;
+  font-family: "Manrope", Arial, Helvetica, sans-serif;
+  border: none;
+  color: white;
+}
+input {
+  width: 20%;
+  border-radius: 5px;
+  border: 1px solid #ada9a9;
+  padding: 5px 5px 5px 2rem;
+  margin: 0 2rem 0 0;
+  background-image: url("../IMG/search.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  outline: 0;
+  background-position: 12px;
+  background-size: 16px;
+}
+@media only screen and (max-width: 992px) {
+  input {
+    width: 100%;
+    margin: 0 1rem 0 1rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .book-title {
+    width: 150px;
+  }
+  .Btn {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    background-color: #032c62;
+    font-family: "Manrope", Arial, Helvetica, sans-serif;
+    border: none;
+    color: white;
+  }
+}

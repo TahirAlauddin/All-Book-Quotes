@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- ======================================================================================================================== -->
+
+    <div><img src="{% static 'img/cover2.jpg' %}" alt="" class="cover" /></div>
+
+    <div class="flex">
+      <div class="container introDiv mt-5">
+        <p>
+          <span class="your-work"
+            >Contact Us
+          </span>
+        </p>
+        <div class="introText container">
+            Thanks for your interest in reaching out and connecting with us.
+            Please let us know if you have any recommendations for book quotes that you'd like us to cover.
+            If you have any other queries you can send us an email at allbooksquotes@gmail.com and someone from our team will respond to you soon.
+            We'd love to hear from you.
+            All Books Quotes Team
+        </div>
+        <div class="mt-1 btns">
+          <a class="nav-link active mx-2" aria-current="page" href="/Home">
+            <button class="Btn mt-1">Email</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+    </div>
+
+    <!-- =================================================================================================================================== -->
+    {% include 'footer.html' %}
+
+
+  {% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div><img src="{% static 'img/cover2.jpg' %}" alt="" class="cover" /></div>
+
+    <!-- =============================================================================================================================== -->
+
+    <div class="flex mb-5">
+      <div class="container introDiv mt-5">
+        <p>
+          <span class="your-work">About US </span>
+        </p>
+        <div class="introText container" style="text-justify: distribute">
+          Welcome to All Books Quotes website. We have a collection of the best
+          and most inspiring quotes from the world's most popular and
+          bestselling books. Our in-house team is dedicated to provide you with
+          a curated collection of book quotes that will inspire, motivate, and
+          enlighten you. We are book lovers and are passionate about literature,
+          fiction, history and non-fiction books. Our team of book experts do
+          extensive research and curate some of the best quotes from each book
+          to make sure that you will get to see only the top quotes. We thank
+          you for visiting our website and we are hopeful that you will find the
+          inspiration and motivation by reading our collection of quotes from
+          bestselling books of all time.
+        </div>
+        <div class="mt-1 btns mb-5">
+          <a class="nav-link active mx-2" aria-current="page" href="/Home">
+            <button class="Btn mt-1">Email</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% include 'footer.html' %}
+
+{% endblock content %}
+    

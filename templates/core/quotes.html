@@ -1,0 +1,433 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+<title>{{book.count_quotes}}+ quotes from {{book.name}} by {{book.author}}</title>
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+<link
+  rel="stylesheet"
+  href="https://quotes.pub/css/app.css?id=179e59caac261c8d8370a4fe56c0bdb8"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<style>
+  * {
+    font-family: 'Manrope' Helvetica Arial Sans-serif;
+  }
+  .hide {
+    display: none !important;
+  }
+
+  .show {
+    display: inline-block;
+  }
+  #headerAds {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  section#single-quote-image
+    .carousel
+    .carousel-inner
+    .carousel-item
+    .carousel-control-prev,
+  section#single-quote-image
+    .carousel
+    .carousel-inner
+    .carousel-item
+    .carousel-control-next {
+    /*width: auto !important;*/
+    border-radius: 30px !important;
+    font-weight: bold;
+  }
+  .footer h4 {
+    color: white;
+  }
+  .pd-10 {
+    padding: 10px;
+  }
+  .quote-text {
+    font-size: 1rem!important;
+    padding: 1rem;
+  }
+
+  .copy-button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .copy-button.copied {
+    background-color: #008CBA;
+  }
+  
+  .copy-button.copied:after {
+    content: "Copied!";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .copy-button.copied:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 20px 10px;
+    border-color: transparent transparent #008CBA transparent;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .copy-button.copied:active:before {
+    opacity: 1;
+  }
+  
+  .copy-button.copied:active:after {
+    opacity: 1;
+  }
+
+  .quote-image {
+    height: 25rem !important;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 660px) {
+    .quote-image {
+      height: 20rem !important;
+    }
+    .Btn {
+      padding: 5px;
+      font-size: 12px;
+    }
+  }
+
+  #scroll-to-top {
+    bottom: 2rem;
+  }
+
+  @media screen and (max-width: 768px) {  
+    #scroll-to-top {
+      font-size: 17px;
+      width: 40px;
+      bottom: 1rem;
+    }
+  }
+
+</style>
+
+
+<link rel="stylesheet" href="{% static 'css/quotes.css' %}" />
+<!-- ======================================================================================================================== -->
+<section>
+  <div id="topData" class="mainWrapper">
+    <div class="album">
+     <div>
+      <img src="{% static 'img/cover2.jpg' %} " alt="" class="cover" /></div>
+      <div class="cardsDiv">
+        <img src="{{book.cover_photo.url}}" class="cardWidthImg" />
+      </div>
+      <div class="flex">
+        <div class="container introDiv mt-5">
+          <p>
+            <span class="your-work"> {{book.name}} </span>
+          </p>
+          <div>  {{book.pages}} Pages</div>
+          <div class="introText container">
+          {{book.starsHtml|safe}}
+          </div>
+          <div class="introText container" style="font-size:0.9rem">{{book.votesHtml}}</div>
+          <div class="mt-1 btns">
+            <a class="nav-link active mx-2" aria-current="page" href={{book.affiliate_link}}>
+              <button class="Btn mt-1 mb-5" style="width: 12rem">
+                Buy On Amazon
+           </button>
+         </a>
+       </div>
+     </div>
+   </div>   
+  </div>
+</div>
+
+  <div class="container">
+    <div id="description" style="text-align: center;">
+      <p style="font-size: 2rem">{{book.description|linebreaksbr }}</p>
+    </div>
+    <div id="externalLink" style="font-size: 1.5rem; text-align: center;">
+      <span style="font-weight: bold;">{{book.source_or_credit_text}}:</span>
+      <a href={{book.external_link}}>{{book.external_link_text}}</a>
+    </div>
+  </div>
+  
+</section>
+
+<section id="single-quote-image">
+  <div class="container">
+    {% for quote in quotes %}
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="wrap-quote-card mt-4 mb-4">
+          <div class="quote-card">
+            <div class="q-wrapper">
+              <div class="q-i-wrapper">
+                <div class="q-i-container">
+                    <img
+                      data-src="{{quote.image.url}}"
+                      width="1920"
+                      height="1080"
+                      class="w-100 mb-3 ls-is-cached lazyloaded quote-image"
+                      src="{{quote.image.url}}"
+                    />
+                    <div id="{{forloop.counter0}}"  class='quote-text'>
+                      {{quote.text}}
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="q-i-footer">
+                  <div 
+                    class="d-flex justify-content-center mb-4"
+                  >
+                    <div class="social-icons">
+                      <a
+                        {% if request.get_host == 'localhost:8000' %}
+                        href="https://www.facebook.com/sharer.php?u=https://127.0.0.1{{request.path}}#{{forloop.counter0}}"
+                        {% else %}
+                        href="https://www.facebook.com/sharer.php?u=https://{{request.get_host}}{{request.path}}#{{forloop.counter0}}"
+                        {% endif %}
+                        class="rounded-circle me-3"
+                        rel="nofollow"
+                        target="_blank"
+                        ><svg
+                          viewBox="0 0 10 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M10 .14v3.157L8.187 3.3c-1.424 0-1.696.7-1.696 1.718v2.258h3.387l-.44 3.532H6.491V20H2.958v-9.19H0V7.278h2.957V4.673C2.957 1.65 4.742 0 7.36 0A23.3 23.3 0 0 1 10 .14Z"
+                            fill="#A1C1EF"
+                          ></path></svg
+                      ></a>
+                      <a
+                        href="mailto:allbookquotes@gmail.com"
+                        style="text-decoration: none;"
+                        class="rounded-circle me-3"
+                        rel="nofollow"
+                        target="_blank">
+                        <img src="{% static 'img/share-email.png' %}" style="height: 1.4rem;" />  
+                        </a>
+                      <a
+                        href="https://twitter.com/share?url={{request.get_host}}/{{request.path}}&amp;text={{quote.text}} - {{book.author}}"
+                        class="rounded-circle me-3"
+                        rel="nofollow"
+                        target="_blank"
+                        ><svg
+                          viewBox="0 0 20 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M17.952 4.481a14.07 14.07 0 0 1-1.42 6.798c-1.027 2.08-2.55 3.806-4.404 4.99-1.853 1.185-3.964 1.783-6.103 1.728-2.14-.055-4.223-.76-6.025-2.04 2.17.29 4.355-.388 6.074-1.882a3.854 3.854 0 0 1-2.372-.895 4.562 4.562 0 0 1-1.46-2.257c.615.13 1.248.104 1.852-.078-.937-.21-1.778-.777-2.38-1.6a4.868 4.868 0 0 1-.91-2.914c.57.351 1.207.546 1.858.568C1.794 6.256 1.18 5.27.944 4.143a4.976 4.976 0 0 1 .45-3.312 11.961 11.961 0 0 0 3.771 3.37 10.775 10.775 0 0 0 4.684 1.38 5 5 0 0 1 .258-2.909c.372-.911 1.006-1.661 1.802-2.134A3.762 3.762 0 0 1 14.512.06c.891.162 1.71.645 2.328 1.374A7.73 7.73 0 0 0 19.447.332c-.306 1.053-.947 1.946-1.804 2.514A7.581 7.581 0 0 0 20 2.131a8.89 8.89 0 0 1-2.047 2.352"
+                            fill="#A1C1EF"
+                          ></path></svg
+                      ></a>
+                    </div>
+
+                      <button class="copy-button Btn">
+                        Copy Quote
+                    </button>
+
+                    <div>
+                    </br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %} 
+
+  </div>
+</section>
+
+<script>
+  
+  let starsHtml = '<span class="rating-stars">';
+
+    for (let i = 0; i < 5; i++) {
+      if (i < book.rating) {
+        starsHtml += '&#9733';
+      } else {
+        starsHtml += '&#9734';
+      }
+    }
+    starsHtml += '</span>'
+
+</script>
+
+<section>
+  <div style="margin: 8rem;" class="mt-5 mb-5" id="cardMargen">
+    <h1 style="display: flex; justify-content: center; font-weight: bold; color: black">
+      Related Book Quotes
+    </h1>
+    <div id="mart" style="display: flex; flex-wrap:wrap; justify-content: center; margin-top: 1rem;" class="mainWrapper mb-10">    
+      {% for book in interesting_books %}
+      <div class="albums">
+        <a href="/books/{{book.slug}}-quotes/" style="text-decoration: none;">
+          <div class="book-card">
+            <div class="book-cover">
+              <img src="{{book.cover_photo.url}}" alt="Book Cover">
+            </div>
+            <div class="book-details">
+              <div class="book-title">{{book.name}}</div>
+              <div class="book-author">{{book.author}}</div>
+              <div class="book-rating">
+                <span class="rating-value">{{book.rating}}</span>
+                {{book.starsHtml}}
+                <span class="rating-votes">{{book.votes}}M votes</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  
+  
+  const copyButton = document.getElementsByClassName('copy-button');
+  let button;
+  for (let i = 0; i < copyButton.length; i++) {
+    button = copyButton[i];
+    button.addEventListener('click', function() {
+      quoteDivElement = document.getElementById(i);
+      const textToCopy = quoteDivElement.innerHTML.trim();
+      navigator.clipboard.writeText(textToCopy);
+      this.classList.add('copied');
+      alert("Quote copied!");
+
+      
+      setTimeout(() => {
+        this.classList.add('copied');
+      }, 1000);
+    });
+  }
+  
+
+  const mainWrapper = document.getElementById("topData");
+  const descriptionDiv = document.getElementById("description");
+  const externalLink = document.getElementById("externalLink");
+
+  async function getBook(book_id) {
+    let response = await fetch(
+      `/api${book_id}`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    ).then((response) => {
+      return response.json();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+    }
+
+async function showBook() {
+  const book = await getBook(`{{request.path}}`);
+
+  let starsHtml = '<span class="rating-stars">';
+
+    for (let i = 0; i < 5; i++) {
+      if (i < book.rating) {
+        starsHtml += '&#9733';
+      } else {
+        starsHtml += '&#9734';
+      }
+    }
+    starsHtml += '</span>'
+
+  const bookElement = document.createElement("div");
+  bookElement.classList.add("album");
+  let cover_photo = `{% static 'img/cover2.jpg' %}`
+  bookElement.innerHTML = `
+
+   <div><img src="${cover_photo}" alt="" class="cover" /></div>
+ <div class="cardsDiv">
+   <img src="${book.cover_photo}" class="cardWidthImg" />
+ </div>
+ <div class="flex">
+   <div class="container introDiv mt-5">
+     <p>
+       <span class="your-work"> ${book.name} </span>
+     </p>
+     <div>  ${book.pages} Pages</div>
+     <div class="introText container">
+      ${starsHtml}
+     </div>
+     <div class="introText container" style="font-size:0.9rem">(${book.votes} M)</div>
+     <div class="mt-1 btns">
+       <a  rel="nofollow" target="_blank" class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
+         <button class="Btn mt-1 mb-5" style="width: 12rem">
+           Buy On Amazon
+         </button>
+       </a>
+     </div>
+   </div>
+ </div>   
+`;
+  mainWrapper.appendChild(bookElement);
+  if (book.description) {
+    description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
+  }
+  if (book.external_link) {
+    externalLink.innerHTML = `<a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
+  }
+
+}
+
+{% comment %} showBook(); {% endcomment %}
+
+// ===============================================
+
+</script>
+
+<a href="#">
+  <button id="scroll-to-top">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
+</a>
+
+<div class="mb-4">
+</div>
+{% include 'footer.html' %}
+
+{% endblock %}

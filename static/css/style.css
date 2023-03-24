@@ -1,0 +1,108 @@
+.book-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 30rem;
+  height: 14rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+.book-card {
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+}
+.book-title {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: left;
+}
+}
+
+  .book-cover {
+    width: 10rem;
+    height: 14rem;
+    margin-right: 30px;
+  }
+  
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .book-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .book-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .book-author {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  
+  .book-rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating-value {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .rating-stars {
+    font-size: 20px;
+    color: #ffc107;
+  }
+  
+  .rating-votes {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 10px;
+  }
+  
+
+#scroll-to-top {
+  position: fixed;
+  bottom: 5rem;
+  right: 20px;
+  z-index: 99;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  background-color: #032c62;
+  width: 50px;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 25%;
+}
+#scroll-to-top:hover {
+  background-color: #333;
+}
+
+@media screen and (max-width: 768px) {  
+  #scroll-to-top {
+    right: 8px;
+  }
+}

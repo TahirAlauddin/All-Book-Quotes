@@ -1,0 +1,161 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/quotes.css' %}" />
+<!-- ======================================================================================================================== -->
+<div id="topData" class="mainWrapper mb-10"></div>
+<!-- =================================================================================================================================== -->
+<div class="quote" id="quote"></div>
+<!-- =================================================================================================================================== -->
+
+<script>
+  const mainWrapper = document.getElementById("topData");
+
+  async function getBook(book_id) {
+    let response = await fetch(
+      `/api${book_id}`,
+      {
+        method: "GET",
+        mode: "cors",
+      }
+    ).then((response) => {
+      return response.json();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      return response;
+    }
+
+async function showBook() {
+  const book = await getBook(`{{request.path}}`);
+
+  let starsHtml = '<span class="rating-stars">';
+
+    for (let i = 0; i < 5; i++) {
+      if (i < book.rating) {
+        starsHtml += '&#9733';
+      } else {
+        starsHtml += '&#9734';
+      }
+    }
+    starsHtml += '</span>'
+
+  const bookElement = document.createElement("div");
+  bookElement.classList.add("album");
+  bookElement.innerHTML = `
+
+   <div><img src="${book.cover_photo}" alt="" class="cover" /></div>
+ <div class="cardsDiv">
+   <img src="${book.cover_photo}" class="cardWidthImg" />
+ </div>
+ <div class="flex">
+   <div class="container introDiv mt-5">
+     <p>
+       <span class="your-work"> Quotes from The ${book.name} </span>
+     </p>
+     <div class="introText container" style="font-size:12px">${book.name}  ${book.pages} Pages</div>
+     <div class="introText container">
+      ${starsHtml}
+     </div>
+     <div class="introText container" style="font-size:11px">(${book.votes} M)</div>
+     <div class="mt-1 btns">
+       <a class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
+         <button class="Btn mt-1 mb-5" style="margin-left: 2rem">
+           Buy Now
+         </button>
+       </a>
+     </div>
+   </div>
+ </div>   
+`;
+
+  mainWrapper.appendChild(bookElement);
+}
+
+showBook();
+
+// ===============================================
+
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+  alert("Copied the text");
+}
+/* ==================================================================================================== */
+async function getQuotes(book_id) {
+  let response = await fetch(
+    `http://localhost:8000/api/books/${book_id}/quotes/`,
+    {
+      method: "GET",
+      mode: "cors",
+    }
+    )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return response;
+}
+
+
+const quotesMainWrapper = document.getElementById("quote");
+
+async function showQuote() {
+  const quotes = await getQuotes();
+
+  quotes['results'].forEach((quote) => {
+    const quoteElement = document.createElement("div");
+    quoteElement.classList.add("albums");
+    quoteElement.innerHTML = `
+    <input
+    type="text"
+    value="${quote.text}"
+    id="myInput"
+    class="form-control"
+    disabled
+    hidden
+  /><br />
+  <div style="display: flex; justify-content: center; width: 100%">
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      style="border: none;  font-family: Helvetica, OpenSans, sans-serif; resize: none;"
+      disabled
+    >
+    ${quote.text}</textarea
+    >
+  </div>
+
+  <br />
+
+  <div class="social-icons-copy-text">
+
+    <span class='quotes-share-links'>
+      <li class="squ"><a style="color: #032c62;" href="#"><i class="fab fa-facebook-f"></i></a></li>
+      <li class="squ"><a style="color: #032c62;" href="#"><i class="fab fa-twitter"></i></a></li>
+      <li class="squ"><a style="color: #032c62;" href="#"><i class="fab fa-linkedin"></i></a></li>
+    </span>
+      
+    <button class="Btn mb-5" onclick="myFunction()" style="font-size: 12px">
+      Copy Text
+    </button>
+  </div>`;
+    quotesMainWrapper.appendChild(quoteElement);
+  });
+}
+
+showQuote()
+
+</script>
+
+{% include 'footer.html' %}
+
+{% endblock content %}

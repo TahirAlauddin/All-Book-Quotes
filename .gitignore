@@ -1,0 +1,25 @@
+*.zip
+
+# Data
+books_data/
+data.txt
+links.txt
+*.sqlite3
+*.db
+Pipfile.lock
+
+# Images
+Images/
+bookquotes-images
+random-images
+quotes-with-text-images
+
+# env
+.env
+
+# Cache
+__pycache__
+.vscode
+
+books_data.json
+media/
