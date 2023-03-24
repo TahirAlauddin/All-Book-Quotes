@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '143.110.248.192']
 
 
 # Application definition
@@ -83,12 +83,24 @@ WSGI_APPLICATION = 'allbooksquotes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+if DEBUG:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'AllBookQuotes',
+            'USER': os.environ.get('POSTGRESQL_DATABASE_USER'),
+            'PASSWORD': os.environ.get('POSTGRESQL_DATABASE_PASSWORD'),
+            'HOST': os.environ.get('POSTGRESQL_DATABASE_HOST'),
+            'PORT': os.environ.get('POSTGRESQL_DATABASE_PORT')
+        }
+    }
 
 
 # Password validation
@@ -141,7 +153,6 @@ MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -156,9 +167,10 @@ REST_FRAMEWORK = {
 
 
 # Production Settings
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
-SECURE_SSL_REDIRECT = False
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
 
 # Project Specific Settings
 QUOTES_MEDIA_PATH = 'quotes'

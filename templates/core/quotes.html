@@ -167,13 +167,17 @@
 </div>
 
   <div class="container">
+    {% if book.description %}
     <div id="description" style="text-align: center;">
       <p style="font-size: 2rem">{{book.description|linebreaksbr }}</p>
     </div>
+    {% endif %}
+    {% if book.external_link %}
     <div id="externalLink" style="font-size: 1.5rem; text-align: center;">
       <span style="font-weight: bold;">{{book.source_or_credit_text}}:</span>
       <a href={{book.external_link}}>{{book.external_link_text}}</a>
     </div>
+    {% endif %}
   </div>
   
 </section>

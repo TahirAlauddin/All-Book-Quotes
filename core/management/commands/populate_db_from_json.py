@@ -37,7 +37,7 @@ class Command(BaseCommand):
 using Unsplash API to retrive landscape images.'
     
     def add_arguments(self, parser):
-        parser.add_argument('book_slug', nargs='+', type=str)
+        parser.add_argument('path', nargs='+', type=str)
 
     def handle(self, *args, **options):
         path = options.get('path', 'books_data.json')

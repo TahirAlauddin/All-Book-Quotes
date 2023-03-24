@@ -28,7 +28,7 @@
 
   </head>
   <body>
-    <nav style="padding: 10px 50px; background: #343a40 !important;" class="navbar navbar-expand-lg bg-body-tertiary pd-10">
+    <nav style="" class="navbar navbar-expand-lg bg-body-tertiary pd-10">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/ABQ-white-without-text.png' %}" style="width: 70px"/></a>
         <button
@@ -50,42 +50,12 @@
             <li class="nav-item menu-item">
               <a class="nav-link" style="color: white;" href="{% url 'about-us' %}">About Us</a>
             </li>
-            {% comment %} <li class="nav-item menu-item">
-              <a class="nav-link" href="{% url 'contact-us' %}">Contact Us</a>
-            </li>
-            <li class="nav-item dropdown menu-item">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Service
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="{% url 'disclaimer' %}">Disclaimer</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'copy-right' %}">Copyright</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'privacy-policy' %}"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'terms-and-conditions' %}"
-                    >Terms of Service</a
-                  >
-                </li> {% endcomment %}
           </ul>
         </div>
       </div>
       <form method="GET" class='navbar-search-div'>
-          <input name="search" type="text" placeholder="Search" style="min-width: 200px; margin-right: 10px;" />
-          <button type="submit" class='Btn navbar-search-btn' style='width: 6rem; height: 2.2rem; font-size: 0.9rem; margin-right: 20px; background-color: black'>Search</button>
+          <input name="search" type="text" placeholder="Search" style="margin-right: 10px; background-image: url({% static 'img/search.png' %});" />
+          <button type="submit" class='Btn navbar-search-btn' style=>Search</button>
       </form>
     </nav>
     <div id='outer-wrap'> </div>

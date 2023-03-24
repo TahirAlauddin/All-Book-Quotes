@@ -4,7 +4,7 @@ from .serializers import BookSerializer, QuoteSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 import random
-# import django_filters.rest_framework import 
+
 
 def get_book(request, slug):
     book = Book.objects.get(slug=slug)
@@ -55,9 +55,11 @@ class BookModelViewSet(ModelViewSet):
     lookup_field = 'slug'
     filter_backends = [SearchFilter]
     search_fields = ['name', 'author']
+    http_method_names = ['get', 'options']
 
 
 class QuoteModelViewSet(ModelViewSet):
     queryset = Quote.objects.all()
     serializer_class = QuoteSerializer
+    http_method_names = ['get', 'options']
     

@@ -7,17 +7,21 @@
 
 .navbar-search-div {
   display: flex;
-  flex-wrap: nowrap;
+}
+
+.navbar {
+  padding: 10px 30px; background: #343a40 !important;
+}
+
+.navbar-search-btn {
+  width: 6rem;
+  height: 2.2rem !important;
+  font-size: 0.9rem;
+  background-color: black;
 }
 
 @media screen and (max-width: 400px) {
-  .navbar-search-div {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .navbar-search-btn {
-    margin-top: 10px;
-  }
+
 }
 
 
@@ -55,18 +59,14 @@ input {
   border: 1px solid #ada9a9;
   padding: 5px 5px 5px 2rem;
   margin: 0 2rem 0 0;
-  background-image: url("../IMG/search.png");
   background-size: contain;
   background-repeat: no-repeat;
   outline: 0;
   background-position: 12px;
   background-size: 16px;
+  min-width: 200px;
 }
 @media only screen and (max-width: 992px) {
-  input {
-    width: 100%;
-    margin: 0 1rem 0 1rem;
-  }
 }
 @media screen and (max-width: 768px) {
   .book-title {
@@ -82,4 +82,22 @@ input {
     border: none;
     color: white;
   }
+  .navbar-search-div {
+    min-width: 20px;
+  }
+  .navbar-search-btn {
+    width: 8rem;
+    height: 2.4rem;
+  }
+  .navbar {
+    padding: 10px 10px;
+  }
+
+}
+@media screen and (max-width: 400px) {
+  input {
+    width: 100%;
+    margin: 0 1rem 0 1rem;
+    min-width: 100px;
+    }
 }
