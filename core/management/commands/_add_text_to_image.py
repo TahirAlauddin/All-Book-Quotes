@@ -6,6 +6,7 @@ from django.core.files import File
 import re
 import random
 import string
+import platform
 
 IMAGE_DIRECTORY = 'quotes-images'
 
@@ -36,9 +37,9 @@ def add_text_to_image(text, image_file):
 
     if division_factor <= 35:
         lines = textwrap.wrap(text, width=int(len(text)/division_factor * 10))
-        margin_top = 0
-    else:
         margin_top = 50
+    else:
+        margin_top = 100
         lines = textwrap.wrap(text, width=100)
 
     # open the image file and get its dimensions
@@ -51,7 +52,13 @@ def add_text_to_image(text, image_file):
     # create a drawing object and write the text in the center
     draw = ImageDraw.Draw(new_img)
     font_size = int(min(width, height) / division_factor)  # adjust the font size as desired
-    font = ImageFont.truetype("arial.ttf", font_size)
+    if platform.system().lower() == 'windows':
+        font = ImageFont.truetype("arial.ttf", font_size)
+    elif platform.system().lower() == 'linux':
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", font_size-2)
+    else:
+        font = ImageFont.load_default()
+
 
     # get the width and height of the text
     text_height = 0

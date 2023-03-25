@@ -32,7 +32,6 @@
 }
  
 .introDiv {
-  width: 700px;
   height: auto;
   object-fit: contain;
   text-align: center; 
@@ -51,10 +50,11 @@
 
 }
 .introText {
-  width: 600px;
+  padding: 1.5rem;
+  line-height: 30pt !important;
   height: auto;
   flex-grow: 0;
-  font-size: 23px;
+  font-size: 1.3rem;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
@@ -64,7 +64,6 @@
   margin: 0rem 0 0 0rem;
   display: flex;
   justify-content: center;
-  margin-left: 50px;
 }
 
 .Rectangle-4 {
@@ -180,7 +179,7 @@
 }
   
 #cardMargen {
-    margin: 0rem;
+    margin: 8rem;
   }
 
 .icof{
@@ -226,8 +225,10 @@
   .cardWidthImgDis{
             display: none;
   }
+  .cardMargen {
+    margin: 2rem;
+  }
   .introDiv {
-    width: 326px;
     height: auto;
     object-fit: contain;
     text-align: center; 
@@ -246,19 +247,8 @@
   
   }
   .introText {
-    width: 326px;
-    height: auto;
-    /* flex-grow: 0; */
-    font-size: 23px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.45;
+    line-height: 1.45 !important;
     letter-spacing: normal;
-    color: #000;
-    margin: 0rem 0 0 0rem;
-    display: flex;
-    justify-content: center;
   }
   .Rectangle-4 {
     width: 400px;

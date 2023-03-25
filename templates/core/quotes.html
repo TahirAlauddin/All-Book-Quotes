@@ -8,7 +8,7 @@
 {% load static %}
 <link
   rel="stylesheet"
-  href="https://quotes.pub/css/app.css?id=179e59caac261c8d8370a4fe56c0bdb8"
+  href="{% static 'css/extra.css' %}"
   as="style"
   onload="this.onload=null;this.rel='stylesheet'"
 />
@@ -294,7 +294,7 @@
 </script>
 
 <section>
-  <div style="margin: 8rem;" class="mt-5 mb-5" id="cardMargen">
+  <div class="mt-5 mb-5" id="cardMargen">
     <h1 style="display: flex; justify-content: center; font-weight: bold; color: black">
       Related Book Quotes
     </h1>
@@ -327,7 +327,7 @@
    
   const copyButton = document.getElementsByClassName('copy-button');
   let button;
-  for (let i = 0; i <sc copyButton.length; i++) {
+  for (let i = 0; i < copyButton.length; i++) {
     button = copyButton[i];
     button.addEventListener('click', function() {
       quoteDivElement = document.getElementById(i);

@@ -69,6 +69,8 @@ using Unsplash API to retrive landscape images.'
                 self.stderr.write(self.style.ERROR(f"{str(book)} image file not found!"))      
                 continue
 
+            if not book_data['book_name']:
+                continue
             book.name = book_data['book_name']
             book.author = book_data['author']
             book.pages = book_data['pages']

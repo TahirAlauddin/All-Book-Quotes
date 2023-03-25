@@ -22,3 +22,5 @@ __pycache__
 books_data.json
 media/
 
+
+*.rar

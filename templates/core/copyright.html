@@ -1,76 +1,57 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'core/base.html' %} {% load static %} {% block content %}
 
-
-    <!-- ======================================================================================================================== -->
-
-    <div><img src="{% static 'img/cover2.jpg' %}" alt="" class="cover" /></div>
-
-    <div class="cardsDiv">
-      <img src="{% static 'img/book1.jpg' %}" class="cardWidthImg cardWidthImgDis" />
-      <img src="{% static 'img/book2.jpg' %}" class="cardWidthImg" />
-      <img src="{% static 'img/book3.jpg' %}" class="cardWidthImg cardWidthImgDis" />
+<div class="flex mb-5">
+  <div class="container introDiv mt-5">
+    <p>
+      <span class="your-work">Copyright and DMCA </span>
+    </p>
+    <div class="introText container mb-5" style="text-justify: distribute">
+      We respect the intellectual property rights of others. It is our policy to
+      respond to any claim that Content posted on the Website infringes on the
+      copyright or other intellectual property rights (“Infringement”) of any
+      person or entity. Before submitting a copyright complaint to us consider
+      whether the use could be considered fair use. Fair use states that brief
+      excerpts of copyrighted material may under certain circumstances be quoted
+      verbatim for purposes such as criticism news reporting teaching and
+      research without the need for permission from or payment to the copyright
+      holder. If you have considered fair use and you still wish to continue
+      with a copyright complaint you may want to first reach out to the user in
+      question to see if you can resolve the matter directly with the user. If
+      you are a copyright owner or authorized on behalf of one and you believe
+      that the copyrighted work has been copied in a way that constitutes
+      copyright infringement please submit your claim via email to
+      allbooksquotes@gmail.com with the subject line: “Copyright Infringement”
+      and include in your claim a detailed description of the alleged
+      Infringement as detailed below under “DMCA Notice and Procedure for
+      Copyright Infringement Claims”. You may be held accountable for damages
+      (including costs and attorneys’ fees) for misrepresentation or bad-faith
+      claims on the infringement of any Content found on and/or through the
+      Service on your copyright. DMCA Notice and Procedure for Copyright
+      Infringement Claims You may submit a notification pursuant to the Digital
+      Millennium Copyright Act (DMCA) by providing our Copyright Agent with the
+      following information in writing (see 17 U.S.C 512(c)(3) for further
+      detail): <br />
+      <br />
+      an electronic or physical signature of the person authorized to act on
+      behalf of the owner of the copyright’s interest; <br />
+      a description of the copyrighted work that you claim has been infringed
+      including the URL (i.e. web page address) of the location where the
+      copyrighted work exists or a copy of the copyrighted work;
+      <br />
+      identification of the URL or other specific location on the Website where
+      the material that you claim is infringing is located; <br />
+      your address telephone number and email address; <br />
+      a statement by you that you have a good faith belief that the disputed use
+      is not authorized by the copyright owner its agent or the law;
+      <br />
+      a statement by you made under penalty of perjury that the above
+      information in your notice is accurate and that you are the copyright
+      owner or authorized to act on the copyright owner’s behalf. Reporting
+      Copyright Infringement You can contact our team for any
+      copyright infringing material or activity via email at
+      allbooksquotes@gmail.com and we will take appropriate action. This
+      document was last updated on March 23 2023.
     </div>
-
-    <!-- =============================================================================================================================== -->
-
-
-    <div class="flex mb-5">
-      <div class="container introDiv mt-5">
-        <p>
-          <span class="your-work">Copyright and DMCA </span>
-        </p>
-        <div class="introText container mb-5" style="text-justify: distribute">
-          We respect the intellectual property rights of others. It is our
-          policy to respond to any claim that Content posted on the Website
-          infringes on the copyright or other intellectual property rights
-          (“Infringement”) of any person or entity. Before submitting a
-          copyright complaint to us consider whether the use could be considered
-          fair use. Fair use states that brief excerpts of copyrighted material
-          may under certain circumstances be quoted verbatim for purposes such
-          as criticism news reporting teaching and research without the need for
-          permission from or payment to the copyright holder. If you have
-          considered fair use and you still wish to continue with a copyright
-          complaint you may want to first reach out to the user in question to
-          see if you can resolve the matter directly with the user. If you are a
-          copyright owner or authorized on behalf of one and you believe that
-          the copyrighted work has been copied in a way that constitutes
-          copyright infringement please submit your claim via email to
-          allbooksquotes@gmail.com with the subject line: “Copyright
-          Infringement” and include in your claim a detailed description of the
-          alleged Infringement as detailed below under “DMCA Notice and
-          Procedure for Copyright Infringement Claims”. You may be held
-          accountable for damages (including costs and attorneys’ fees) for
-          misrepresentation or bad-faith claims on the infringement of any
-          Content found on and/or through the Service on your copyright. DMCA
-          Notice and Procedure for Copyright Infringement Claims You may submit
-          a notification pursuant to the Digital Millennium Copyright Act (DMCA)
-          by providing our Copyright Agent with the following information in
-          writing (see 17 U.S.C 512(c)(3) for further detail): <br />
-          <br />
-          an electronic or physical signature of the person authorized to act on
-          behalf of the owner of the copyright’s interest; <br />
-          a description of the copyrighted work that you claim has been
-          infringed including the URL (i.e. web page address) of the location
-          where the copyrighted work exists or a copy of the copyrighted work;
-          <br />
-          identification of the URL or other specific location on the Website
-          where the material that you claim is infringing is located; <br />
-          your address telephone number and email address; <br />
-          a statement by you that you have a good faith belief that the disputed
-          use is not authorized by the copyright owner its agent or the law;
-          <br />
-          a statement by you made under penalty of perjury that the above
-          information in your notice is accurate and that you are the copyright
-          owner or authorized to act on the copyright owner’s behalf. Reporting
-          Copyright Infringement You can contact our team for any
-          copyright infringing material or activity via email at
-          allbooksquotes@gmail.com and we will take appropriate action. This
-          document was last updated on March 3 2023.
-        </div>
-      </div>
-    </div>
-    {% include 'footer.html' %}
-
-{% endblock %}
+  </div>
+</div>
+{% include 'footer.html' %} {% endblock %}

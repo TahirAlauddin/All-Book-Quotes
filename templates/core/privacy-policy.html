@@ -1,99 +1,113 @@
-{% extends 'core/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'core/base.html' %} {% load static %} {% block content %}
 
-    <!-- ======================================================================================================================== -->
+<!-- ======================================================================================================================== -->
+<style>
+  p.content {
+    margin: 2rem;
+    text-align: left;
+  }
+  h2 {
+    font-weight: bold;
+    text-align: left;
+  }
 
-    <div><img src="{% static 'img/cover2.jpg' %}" alt="" class="cover" /></div>
-
-    <div class="cardsDiv">
-      <img src="{% static 'img/book1.jpg' %}" class="cardWidthImg cardWidthImgDis" />
-      <img src="{% static 'img/book2.jpg' %}" class="cardWidthImg" />
-      <img src="{% static 'img/book3.jpg' %}" class="cardWidthImg cardWidthImgDis" />
-    </div>
-
-    <!-- =============================================================================================================================== -->
-
-    <div class="flex mb-5">
-      <div class="container introDiv mt-5">
-        <p>
-          <span class="your-work">Privacy Policy </span>
-        </p>
-        <div class="introText container" style="text-justify: distribute">
-          At All Books Quotes (www.AllBooksQuotes.com) we consider the privacy
-          of our visitors to be extremely important. This privacy policy
-          document describes in detail the types of personal information is
-          collected and recorded by www.allbooksquotes.com and how we use it.
-          Log Files Like many other Web sites, www.allbooksquotes.com makes use
-          of log files. These files merely log visitors to the site – usually a
-          standard procedure for hosting companies and a part of hosting
-          services' analytics. The information inside the log files includes
-          internet protocol (IP) addresses, browser type, Internet Service
-          Provider (ISP), date/time stamp, referring/exit pages, and possibly
-          the number of clicks. This information is used to analyze trends,
-          administer the site, track user’s movement around the site, and gather
-          demographic information. IP addresses and other such information are
-          not linked to any information that is personally identifiable. Cookies
-          and Web Beacons www.AllBooksQuotes.com uses cookies to store
-          information about visitors' preferences, to record user-specific
-          information on which pages the site visitor accesses or visits, and to
-          personalize or customize our web page content based upon visitors’
-          browser type or other information that the visitor sends via their
-          browser. All Books Quotes participates in the Amazon Associates
-          Program, an affiliate advertising program that allows websites to earn
-          commissions by linking to Amazon products. It means that whenever you
-          will buy a product on Amazon from the link on our website, we will
-          earn a small commission of its price.<br />
-          <br />→ Google, as a third-party vendor, uses cookies to serve ads on
-          www.AllBooksQuotes.com.<br />
-          <br />→ Google’s use of the DART cookie enables it to serve ads to our
-          site’s visitors based upon their visit to www.AllBooksQuotes.com and
-          other sites on the Internet. <br />→ Users may opt-out of the use of
-          the DART cookie by visiting the Google ad and content network privacy
-          policy at the following URL – http://www.google.com/privacy_ads.html
-        </div>
+  @media screen and (max-width: 700px) {    
+    p.content {
+      margin: 1rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+<!-- =============================================================================================================================== -->
+<div class="flex">
+  <div class="introDiv mt-5">
+    <h1>
+      <span style="font-weight: bold">Privacy Policy </span>
+    </h1>
+    <div class="introText container" style="text-justify: distribute; flex-direction: column">
+      <p class='content'>
+        At All Books Quotes (www.allbooksquotes.com) we consider the privacy of
+        our visitors to be extremely important. This privacy policy document
+        describes in detail the types of personal information is collected and
+        recorded by www.allbooksquotes.com and how we use it. Log Files Like many
+        other Web sites, www.allbooksquotes.com makes use of log files. These
+        files merely log visitors to the site – usually a standard procedure for
+        hosting companies and a part of hosting services' analytics. The
+        information inside the log files includes internet protocol (IP)
+        addresses, browser type, Internet Service Provider (ISP), date/time stamp,
+        referring/exit pages, and possibly the number of clicks. This information
+        is used to analyze trends, administer the site, track user’s movement
+        around the site, and gather demographic information. IP addresses and
+        other such information are not linked to any information that is
+        personally identifiable. Cookies and Web Beacons www.AllBooksQuotes.com
+        uses cookies to store information about visitors' preferences, to record
+        user-specific information on which pages the site visitor accesses or
+        visits, and to personalize or customize our web page content based upon
+        visitors’ browser type or other information that the visitor sends via
+        their browser. All Books Quotes participates in the Amazon Associates
+        Program, an affiliate advertising program that allows websites to earn
+        commissions by linking to Amazon products. It means that whenever you will
+        buy a product on Amazon from the link on our website, we will earn a small
+        commission of its price.<br />
+      </p>
+      <p class='content'>
+        → Google, as a third-party vendor, uses cookies to serve ads on
+        www.AllBooksQuotes.com.<br />
+      </p>
+      <p class='content'>
+        → Google’s use of the DART cookie enables it to serve ads to our
+        site’s visitors based upon their visit to www.AllBooksQuotes.com and other
+        sites on the Internet.
+      </p>  
+      <p class='content'>
+        → Users may opt-out of the use of the DART
+      </p>
+      <p class='content'>
+        cookie by visiting the Google ad and content network privacy policy at the
+        following URL – http://www.google.com/privacy_ads.html
+      </p>
       </div>
     </div>
+</div>
 
-    <!-- =================================================================================================================================== -->
-    <div class="flex mb-5">
-      <div class="container introDiv mt-5">
-        <p>
-          <span class="your-work">Third-Party Privacy Policies</span>
-        </p>
-        <div class="introText container mb-5" style="text-justify: distribute">
-          You should consult the respective privacy policies of these
-          third-party ad servers for more detailed information on their
-          practices as well as for instructions about how to opt out of certain
-          practices. www.allbooksquotes.com’s privacy policy does not apply to,
-          and we cannot control the activities of, such other advertisers or
-          websites. If you wish to disable cookies, you may do so through your
-          individual browser options. More detailed information about cookie
-          management with specific web browsers can be found on the browsers’
-          respective websites. Children’s Information We believe it is important
-          to provide added protection for children online. We encourage parents
-          and guardians to spend time online with their children to observe,
-          participate in and/or monitor and guide their online activity. We at
-          www.allbooksquotes.com do not knowingly collect any personally
-          identifiable information from children under the age of 13. If a
-          parent or guardian believes that www.allbooksquotes.com has in its
-          database the personally identifiable information of a child under the
-          age of 13, please contact us immediately (using the contact in the
-          first paragraph) and we will use our best efforts to promptly remove
-          such information from our records. Online Privacy Policy Only This
-          privacy policy applies only to our online activities and is valid for
-          visitors to our website and regarding information shared and/or
-          collected there. This policy does not apply to any information
-          collected offline or via channels other than this website. Consent By
-          using our website, you hereby consent to our privacy policy and agree
-          to its terms. Update This Privacy Policy was last updated on 3 March
-          2023. Should we update, amend or make any changes to our privacy
-          policy, those changes will be posted here. For further information,
-          you can send an email to allbooksquotes@gmail.com for quick response.
-        </div>
-      </div>
+<!-- =================================================================================================================================== -->
+<div class="flex mb-5">
+  <div class="container introDiv mt-5">
+    <p>
+      <span class="your-work">Third-Party Privacy Policies</span>
+    </p>
+    <div class="introText container mb-5" style="text-justify: distribute">
+      <p>
+        You should consult the respective privacy policies of these third-party ad
+        servers for more detailed information on their practices as well as for
+        instructions about how to opt out of certain practices.
+      www.allbooksquotes.com’s privacy policy does not apply to, and we cannot
+      control the activities of, such other advertisers or websites. If you wish
+      to disable cookies, you may do so through your individual browser options.
+      More detailed information about cookie management with specific web
+      browsers can be found on the browsers’ respective websites. Children’s
+      Information We believe it is important to provide added protection for
+      children online. We encourage parents and guardians to spend time online
+      with their children to observe, participate in and/or monitor and guide
+      their online activity. We at www.allbooksquotes.com do not knowingly
+      collect any personally identifiable information from children under the
+      age of 13. If a parent or guardian believes that www.allbooksquotes.com
+      has in its database the personally identifiable information of a child
+      under the age of 13, please contact us immediately (using the contact in
+      the first paragraph) and we will use our best efforts to promptly remove
+      such information from our records. Online Privacy Policy Only This privacy
+      policy applies only to our online activities and is valid for visitors to
+      our website and regarding information shared and/or collected there. This
+      policy does not apply to any information collected offline or via channels
+      other than this website. Consent By using our website, you hereby consent
+      to our privacy policy and agree to its terms. Update This Privacy Policy
+      was last updated on 3 March 2023. Should we update, amend or make any
+      changes to our privacy policy, those changes will be posted here. For
+      further information, you can send an email to allbooksquotes@gmail.com for
+      quick response.
+    </p>
     </div>
-    <!-- ================================================================================================================= -->
-    {% include 'footer.html' %}
-
-{% endblock %}
+  </div>
+</div>
+<!-- ================================================================================================================= -->
+{% include 'footer.html' %} {% endblock %}
