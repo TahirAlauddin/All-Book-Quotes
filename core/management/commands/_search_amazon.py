@@ -20,7 +20,7 @@ ACCESS_KEY_ID = os.environ.get('AWS_AFFILIATE_ACCESS_KEY')
 AFFILIATE_TAG = os.environ.get('AFFILIATE_TAG')
 
 
-def search_items(keywords):
+def search_items(keywords, author):
 
     """ Following are your credentials """
     """ Please add your access key here """
@@ -66,6 +66,7 @@ def search_items(keywords):
             partner_tag=partner_tag,
             partner_type=PartnerType.ASSOCIATES,
             keywords=keywords,
+            author=author,
             search_index=search_index,
             item_count=item_count,
             resources=search_items_resource,
@@ -78,35 +79,11 @@ def search_items(keywords):
         """ Sending request """
         response = default_api.search_items(search_items_request)
 
-        print("API called Successfully")
-        # print("Complete Response:", response)
-
         """ Parse response """
         if response.search_result is not None:
-            print("Printing first item information in SearchResult:")
             item_0 = response.search_result.items[0]
-            if item_0 is not None:
-                if item_0.asin is not None:
-                    print("ASIN: ", item_0.asin)
-                if item_0.detail_page_url is not None:
-                    print("DetailPageURL: ", item_0.detail_page_url)
-                if (
-                    item_0.item_info is not None
-                    and item_0.item_info.title is not None
-                    and item_0.item_info.title.display_value is not None
-                ):
-                    print("Title: ", item_0.item_info.title.display_value)
-                if (
-                    item_0.offers is not None
-                    and item_0.offers.listings is not None
-                    and item_0.offers.listings[0].price is not None
-                    and item_0.offers.listings[0].price.display_amount is not None
-                ):
-                    print(
-                        "Buying Price: ", item_0.offers.listings[0].price.display_amount
-                    )
-
             return item_0.detail_page_url
+        
         if response.errors is not None:
             print("\nPrinting Errors:\nPrinting First Error Object from list of Errors")
             print("Error code", response.errors[0].code)
@@ -131,5 +108,6 @@ def search_items(keywords):
 
 if __name__ == '__main__':
     keywords = "Harry Potter and the philosopher"
+    keywords = "Angels & Demons"
     detail_url = search_items(keywords)
     print(detail_url)

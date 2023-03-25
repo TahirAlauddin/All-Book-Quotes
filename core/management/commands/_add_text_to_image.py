@@ -3,6 +3,22 @@ import os
 import textwrap
 from core.models import Quote
 from django.core.files import File
+import re
+import random
+import string
+
+IMAGE_DIRECTORY = 'quotes-images'
+
+def get_random_string():
+    return ''.join([random.choice(string.ascii_letters + string.digits) 
+                    for i in range(6)])
+
+def slugify(text):
+    # Replace all non-alphanumeric characters with a hyphen
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text).strip().lower()
+    # Replace all spaces with a hyphen
+    text = re.sub(r'[-\s]+', '-', text)
+    return text + get_random_string()
 
 
 def add_text_to_image(text, image_file):
@@ -56,10 +72,10 @@ def add_text_to_image(text, image_file):
 
     # combine the original image and the text image
     result = Image.alpha_composite(img.convert('RGBA'), new_img)
-    path = image_file.replace('.jpg', '.png')
+    path = os.path.join(IMAGE_DIRECTORY, f'{slugify(text[:50])}.png')
     # Save the image in file
+    
     result.save(path)
-    os.remove(image_file)
 
     return path
 

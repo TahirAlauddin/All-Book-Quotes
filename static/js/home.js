@@ -2,6 +2,23 @@ const mainWrapper = document.getElementById("mart");
 let limit = 20;
 let offset = 0;
 
+function formatNumber(num) {
+  const suffixes = ['', 'K', 'M', 'B', 'T'];
+  let suffixIndex = 0;
+  
+  while (num >= 1000 && suffixIndex < suffixes.length - 1) {
+    suffixIndex++;
+    num /= 1000.0;
+  }
+  
+  if (Number.isInteger(num)) {
+    return num.toFixed(0) + ' ' + suffixes[suffixIndex];
+  } else {
+    return num.toFixed(1) + ' ' + suffixes[suffixIndex];
+  }
+}
+
+
 async function getBooks(limit, offset) {
   let response = await fetch(
     `/api/books/?limit=${limit}&offset=${offset}`,
@@ -61,6 +78,8 @@ async function showBooks(search=null) {
     }
     starsHtml += '</span>'
 
+    votes = formatNumber(book.votes);
+
     bookElement.innerHTML = `
     <a href="/books/${book.slug}-quotes/" style="text-decoration: none;">
       <div class="book-card">
@@ -73,12 +92,11 @@ async function showBooks(search=null) {
           <div class="book-rating">
             <span class="rating-value">${book.rating}</span>
             ${starsHtml}
-            <span class="rating-votes">${book.votes}M votes</span>
+            <span class="rating-votes">(${votes} votes)</span>
           </div>
         </div>
-        </div>
-        </a>
-
+      </div>
+    </a>
         `;
     mainWrapper.appendChild(bookElement);
   });
@@ -107,8 +125,8 @@ function fetchPosts() {
 
   isLoading = true;
   // Make an AJAX call to the backend API
-  offset += limit;
   showBooks()
+  offset += limit;
   isLoading = false;
 }
 

@@ -1,6 +1,5 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.core.files.storage import default_storage
 from .utils import format_number
 from django.conf import settings
 import os

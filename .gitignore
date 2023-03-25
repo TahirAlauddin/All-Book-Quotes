@@ -10,10 +10,8 @@ Pipfile.lock
 
 # Images
 Images/
-bookquotes-images
-random-images
-quotes-with-text-images
-
+quotes-images
+quotes-images-resources
 # env
 .env
 
@@ -23,3 +21,4 @@ __pycache__
 
 books_data.json
 media/
+

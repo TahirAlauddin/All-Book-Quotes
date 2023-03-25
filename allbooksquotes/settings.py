@@ -88,13 +88,15 @@ if DEBUG:
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db2.sqlite3',
+        'NAME': BASE_DIR / 'db3.sqlite3',
     }
 }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'AllBookQuotes',
+            'NAME': 'allbookquotes',
             'USER': os.environ.get('POSTGRESQL_DATABASE_USER'),
             'PASSWORD': os.environ.get('POSTGRESQL_DATABASE_PASSWORD'),
             'HOST': os.environ.get('POSTGRESQL_DATABASE_HOST'),
@@ -167,10 +169,10 @@ REST_FRAMEWORK = {
 
 
 # Production Settings
-if not DEBUG:
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
+# if not DEBUG:
+#     CSRF_COOKIE_SECURE = True
+#     SESSION_COOKIE_SECURE = True
+#     SECURE_SSL_REDIRECT = True
 
 # Project Specific Settings
 QUOTES_MEDIA_PATH = 'quotes'

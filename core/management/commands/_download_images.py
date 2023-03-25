@@ -15,7 +15,7 @@ def download_image(url, directory):
     response = requests.get(url)
     with open(filepath, 'wb') as f:
         f.write(response.content)
-    return filename
+    return os.path.join(directory, filename)
 
 def main():
     # Call download function 50 times with randomly generated image URLs

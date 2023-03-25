@@ -155,7 +155,7 @@
           </div>
           <div class="introText container" style="font-size:0.9rem">{{book.votesHtml}}</div>
           <div class="mt-1 btns">
-            <a class="nav-link active mx-2" aria-current="page" href={{book.affiliate_link}}>
+            <a target="_blank" class="nav-link active mx-2" aria-current="page" href={% if book.affiliate_link %}{{book.affiliate_link}}{% else %}https://amazon.com{% endif %}>
               <button class="Btn mt-1 mb-5" style="width: 12rem">
                 Buy On Amazon
            </button>
@@ -311,8 +311,8 @@
               <div class="book-author">{{book.author}}</div>
               <div class="book-rating">
                 <span class="rating-value">{{book.rating}}</span>
-                {{book.starsHtml}}
-                <span class="rating-votes">{{book.votes}}M votes</span>
+                {{book.starsHtml|safe}}
+                <span class="rating-votes">{{book.votesHtml|safe}} votes</span>
               </div>
             </div>
           </div>
@@ -324,11 +324,10 @@
 </section>
 
 <script>
-  
-  
+   
   const copyButton = document.getElementsByClassName('copy-button');
   let button;
-  for (let i = 0; i < copyButton.length; i++) {
+  for (let i = 0; i <sc copyButton.length; i++) {
     button = copyButton[i];
     button.addEventListener('click', function() {
       quoteDivElement = document.getElementById(i);
@@ -343,85 +342,6 @@
       }, 1000);
     });
   }
-  
-
-  const mainWrapper = document.getElementById("topData");
-  const descriptionDiv = document.getElementById("description");
-  const externalLink = document.getElementById("externalLink");
-
-  async function getBook(book_id) {
-    let response = await fetch(
-      `/api${book_id}`,
-      {
-        method: "GET",
-        mode: "cors",
-      }
-    ).then((response) => {
-      return response.json();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      return response;
-    }
-
-async function showBook() {
-  const book = await getBook(`{{request.path}}`);
-
-  let starsHtml = '<span class="rating-stars">';
-
-    for (let i = 0; i < 5; i++) {
-      if (i < book.rating) {
-        starsHtml += '&#9733';
-      } else {
-        starsHtml += '&#9734';
-      }
-    }
-    starsHtml += '</span>'
-
-  const bookElement = document.createElement("div");
-  bookElement.classList.add("album");
-  let cover_photo = `{% static 'img/cover2.jpg' %}`
-  bookElement.innerHTML = `
-
-   <div><img src="${cover_photo}" alt="" class="cover" /></div>
- <div class="cardsDiv">
-   <img src="${book.cover_photo}" class="cardWidthImg" />
- </div>
- <div class="flex">
-   <div class="container introDiv mt-5">
-     <p>
-       <span class="your-work"> ${book.name} </span>
-     </p>
-     <div>  ${book.pages} Pages</div>
-     <div class="introText container">
-      ${starsHtml}
-     </div>
-     <div class="introText container" style="font-size:0.9rem">(${book.votes} M)</div>
-     <div class="mt-1 btns">
-       <a  rel="nofollow" target="_blank" class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
-         <button class="Btn mt-1 mb-5" style="width: 12rem">
-           Buy On Amazon
-         </button>
-       </a>
-     </div>
-   </div>
- </div>   
-`;
-  mainWrapper.appendChild(bookElement);
-  if (book.description) {
-    description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
-  }
-  if (book.external_link) {
-    externalLink.innerHTML = `<a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
-  }
-
-}
-
-{% comment %} showBook(); {% endcomment %}
-
-// ===============================================
-
 </script>
 
 <a href="#">
@@ -432,6 +352,6 @@ async function showBook() {
 
 <div class="mb-4">
 </div>
-{% include 'footer.html' %}
 
+{% include 'footer.html' %}
 {% endblock %}

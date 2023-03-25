@@ -18,6 +18,7 @@ def remove_special_chars(input_string):
 
 
 def parse_number(number_string):
+    number_string = number_string.split(' ')[0]
     if number_string[-1] == 'M':
         multiplier = 1000000
     elif number_string[-1] == 'K':
@@ -25,7 +26,7 @@ def parse_number(number_string):
     else:
         multiplier = 1
 
-    number = number_string.split()[0][1:-1]
+    number = number_string.split()[0][:-1]
     if number:
         return int(float(number) * multiplier)
     return 0
@@ -37,10 +38,11 @@ class Command(BaseCommand):
 using Unsplash API to retrive landscape images.'
     
     def add_arguments(self, parser):
-        parser.add_argument('path', nargs='+', type=str)
+        parser.add_argument('path', type=str)
 
     def handle(self, *args, **options):
         path = options.get('path', 'books_data.json')
+
         self.populate_db_from_json(path)
 
 
@@ -69,8 +71,8 @@ using Unsplash API to retrive landscape images.'
 
             book.name = book_data['book_name']
             book.author = book_data['author']
-            book.pages = book_data['pages'] if type(book_data, int) else 100
-            book.rating = book_data['rating'] if type(book_data, int) else 3
+            book.pages = book_data['pages']
+            book.rating = book_data['rating']
             book.votes = parse_number(book_data['votes'].strip('()'))
             book.save()  # save the new model object to the database
             book_names.append(book.name)

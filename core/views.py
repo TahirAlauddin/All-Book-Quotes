@@ -1,3 +1,4 @@
+from django.db.models.functions import Random
 from django.shortcuts import render
 from .models import Book, Quote
 from .serializers import BookSerializer, QuoteSerializer
@@ -38,8 +39,7 @@ def terms_and_conditions(request):
 
 def get_book_quotes(request, slug):
     quotes = Quote.objects.filter(book__slug=slug)
-    interesting_books = Book.objects.all()
-    interesting_books = [random.choice(interesting_books) for i in range(6)]
+    interesting_books = Book.objects.order_by(Random()).distinct()[:5]
     search_filter = request.GET.get('search')
     if search_filter:
         quotes = quotes.filter(text__icontains=search_filter)

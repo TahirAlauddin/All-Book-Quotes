@@ -1,6 +1,6 @@
 from core.models import Book
 from django.core.management.base import BaseCommand, CommandError
-from _search_amazon import search_items
+from ._search_amazon import search_items
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
                     self.save_affiliate_link(book)
 
     def save_affiliate_link(self, book):
-        link = search_items(book.name)
+        link = search_items(book.name, book.author)
         if link:
             book.affiliate_link = link
             book.save()

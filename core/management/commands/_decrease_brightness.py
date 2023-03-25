@@ -17,8 +17,7 @@ def decrease_brightness(filepath):
     im = Image.merge(image.mode, (Red, Green, Blue))
 
     # Save the modified image
-    output_filepath = os.path.join('bookquotes-images', os.path.basename(filepath))
-    im.save(output_filepath)
+    im.save(filepath)
 
     return True
 
