@@ -24,23 +24,15 @@ def slugify(text):
 
 def add_text_to_image(text, image_file):
     # Get the division factor for font-size
+    if len(text) > 300:
+        text = text[:300] + '......'
+
     if len(text) < 100:
         division_factor = 20
-    elif len(text) < 150:
+    else:
         division_factor = 25
-    elif len(text) < 250:
-        division_factor = 30
-    elif len(text) < 350:
-        division_factor = 35
-    else:
-        division_factor = 40
 
-    if division_factor <= 35:
-        lines = textwrap.wrap(text, width=int(len(text)/division_factor * 10))
-        margin_top = 50
-    else:
-        margin_top = 100
-        lines = textwrap.wrap(text, width=100)
+    lines = textwrap.wrap(text, width=division_factor*2)
 
     # open the image file and get its dimensions
     img = Image.open(image_file)
@@ -59,23 +51,21 @@ def add_text_to_image(text, image_file):
     else:
         font = ImageFont.load_default()
 
-
     # get the width and height of the text
-    text_height = 0
-    text_width = 50
-    for line in lines:
-        text_width_text, text_height_text = draw.textsize(line, font=font)
-        text_height += text_height_text
-        text_width += text_width_text
+    text_height = sum([draw.textsize(line, font=font)[1]
+                       for line in lines])
+
     # calculate the x and y coordinates for center alignment
     y = (img.height - text_height) / 2
-    if margin_top:
-        y -= margin_top
+
+    # Remove spacing between lines from y
+    y -= (len(lines) -1) * 5
+
     # draw each line of the text on the image
     for line in lines:
         line_width, line_height = font.getsize(line)
         draw.text(((img.width - line_width) /2, y), line, font=font, fill='white')
-        y += line_height + font_size  # add extra space between line
+        y += line_height + 10  # add extra space between line
 
     # combine the original image and the text image
     result = Image.alpha_composite(img.convert('RGBA'), new_img)

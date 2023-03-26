@@ -14,7 +14,7 @@ class BookAdmin(admin.ModelAdmin):
     fields = ('cover_photo', 'affiliate_link', 'name', 'author', 'rating',
               'votes', 'pages', 'slug', 'description', 'external_link',
                'external_link_text', 'source_or_credit_text')
-    list_display = ('name', 'author', 'pages')
+    list_display = ('name', 'author', 'pages', 'affiliate_link')
     list_filter = ('rating',)
     search_fields = ('name',)
 

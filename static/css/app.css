@@ -101,3 +101,12 @@ input {
     min-width: 100px;
     }
 }
+
+
+.navbar-custom-toggler-icon {
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  margin: 5px 0;
+  border-radius:2px;
+}

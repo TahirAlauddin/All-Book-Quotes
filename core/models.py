@@ -38,13 +38,13 @@ class Book(models.Model):
     votes = models.BigIntegerField(null=True)
     pages = models.IntegerField(null=True)
     slug = models.SlugField(max_length=255, null=True)
-    affiliate_link = models.URLField('Amazon Affiliate Link', null=True)
-    external_link = models.URLField('External Link', null=True)
-    external_link_text = models.CharField('External Link Text', max_length=255, null=True)
+    affiliate_link = models.URLField('Amazon Affiliate Link', null=True, blank=True)
+    external_link = models.URLField('External Link', null=True, blank=True)
+    external_link_text = models.CharField('External Link Text', max_length=255, null=True, blank=True)
     source_or_credit_text = models.CharField("Source or Credit:", 
                                              choices=SourceCreditChoices.choices, 
-                                             max_length=10, null=True)
-    description = models.TextField("Description", null=True)
+                                             max_length=10, null=True, blank=True)
+    description = models.TextField("Description", null=True, blank=True)
 
     def __str__(self):
         return f"<Book name='{self.name}'>"
