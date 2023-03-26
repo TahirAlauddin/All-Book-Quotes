@@ -53,9 +53,7 @@ using Unsplash API to retrive landscape images.'
         for quote, image in zip(quotes, images):
             image_path = os.path.join(DOWNLOADED_IMAGE_DIRECTORY, image)
             image_path_with_quote = add_text_to_image(quote.text, image_path)
-            # Change the output directory from DOWNLOAD_IMAGE_DIRECTORY to IMAGE_DIRECTORY
-            # image_name = os.path.basename(image)
-            # image_path_with_quote = os.path.join(IMAGE_DIRECTORY, image_name)
+            
             with open(image_path_with_quote, 'rb') as f:
-                quote.image.save(f'{quote.text}.png', File(f))
+                quote.image.save(f'{quote.text}.webp', File(f))
                 

@@ -215,8 +215,8 @@
     }
   .cardWidthImg {
     /* position: absolute; */
-    width: 9rem;
-    height: 15rem;
+    width: 8rem;
+    height: 13rem;
   }       
 }
 
@@ -307,9 +307,6 @@
   #cardMargen {
       margin: 0rem;
     }
-  #mart {
-    margin-top: 8rem;
-  }
   .footerImg{
     left: 0;
       bottom: 0;

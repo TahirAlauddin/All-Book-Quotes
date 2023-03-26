@@ -41,9 +41,9 @@ try:
         # Create a PIL image object from the binary data
         pil_image = Image.open(io.BytesIO(response.content))
 
-        # Save the image as a JPEG file
-        cleaned_str = "Images/" + remove_special_chars(link["book_name"]) + " Image.jpg"
-        pil_image.save(cleaned_str, "JPEG")
+        # Save the image as a WEBP file
+        cleaned_str = "Images/" + remove_special_chars(link["book_name"]) + " Image.webp"
+        pil_image.save(cleaned_str, format="webp")
 
         images_saved.append(link['book_name'])
 

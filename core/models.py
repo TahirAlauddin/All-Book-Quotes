@@ -16,7 +16,7 @@ def get_quote_filename(instance, filename):
     quote_text = slugify(instance.text[:50])  # Generate a slugified version of the quote name
     random_string = get_random_string()
     image_path = os.path.join(settings.QUOTES_MEDIA_PATH, quote_text)
-    return f"{image_path}_{random_string}.png"
+    return f"{image_path}_{random_string}.webp"
 
 class SourceCreditChoices(models.Choices):
     SOURCE = 'Source'
@@ -83,7 +83,7 @@ class Quote(models.Model):
     """
     text = models.TextField()
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='quotes')
-    image = models.ImageField(upload_to=get_quote_filename, default='quotes/default-quote.jpg')
+    image = models.ImageField(upload_to=get_quote_filename, default='quotes/default-quote.webp')
 
     def __str__(self):
         return f"Quote <text={self.text[:50]}...>"

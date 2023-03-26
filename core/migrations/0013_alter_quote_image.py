@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='quote',
             name='image',
-            field=models.ImageField(default='quotes/default-quote.jpg', upload_to=core.models.get_quote_filename),
+            field=models.ImageField(default='quotes/default-quote.webp', upload_to=core.models.get_quote_filename),
         ),
     ]

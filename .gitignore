@@ -4,6 +4,7 @@
 books_data/
 data.txt
 links.txt
+images_saved.txt
 *.sqlite3
 *.db
 Pipfile.lock

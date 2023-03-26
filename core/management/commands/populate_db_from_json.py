@@ -60,7 +60,7 @@ using Unsplash API to retrive landscape images.'
                 continue
 
             book = Book()    # set the image field
-            image_path = fr"Images/{remove_special_chars(book_data['book_name'])} Image.jpg"
+            image_path = fr"Images/{remove_special_chars(book_data['book_name'])} Image.webp"
             try:
                 with open(image_path, 'rb') as f:
                     image_name = os.path.basename(image_path)

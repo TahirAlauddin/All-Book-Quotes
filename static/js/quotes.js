@@ -34,7 +34,7 @@ let starsHtml = '<span class="rating-stars">';
 
 const bookElement = document.createElement("div");
 bookElement.classList.add("album");
-let cover_photo = `{% static 'img/cover2.jpg' %}`
+let cover_photo = `{% static 'img/cover.jpg' %}`
 bookElement.innerHTML = `
 
  <div><img src="${cover_photo}" alt="" class="cover" /></div>

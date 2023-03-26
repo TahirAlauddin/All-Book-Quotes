@@ -19,7 +19,7 @@ def slugify(text):
     text = re.sub(r'[^a-zA-Z0-9\s]', '', text).strip().lower()
     # Replace all spaces with a hyphen
     text = re.sub(r'[-\s]+', '-', text)
-    return text + get_random_string()
+    return text + '-' + get_random_string()
 
 
 def add_text_to_image(text, image_file):
@@ -69,10 +69,10 @@ def add_text_to_image(text, image_file):
 
     # combine the original image and the text image
     result = Image.alpha_composite(img.convert('RGBA'), new_img)
-    path = os.path.join(IMAGE_DIRECTORY, f'{slugify(text[:50])}.png')
+    path = os.path.join(IMAGE_DIRECTORY, f'{slugify(text[:50])}.webp')
     # Save the image in file
     
-    result.save(path)
+    result.save(path, format='webp')
 
     return path
 

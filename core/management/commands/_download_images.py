@@ -10,7 +10,7 @@ def random_image_url():
 
 # Define function to download image from URL and save to directory
 def download_image(url, directory):
-    filename = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8)) + '.jpg'
+    filename = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8)) + '.webp'
     filepath = os.path.join(directory, filename)
     response = requests.get(url)
     with open(filepath, 'wb') as f:

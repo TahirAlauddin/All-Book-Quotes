@@ -26,18 +26,20 @@
     <!-- ======================================================================================================================== -->
 
     <div>
-      <img src="{% static 'img/cover2.jpg' %}" alt="" class="cover" />
+      <img src="{% static 'img/cover.jpg' %}" alt="" class="cover" />
     </div>
     <div class="cardsDiv">
-      <img src="{% static 'img/book1.jpg' %}" class="cardWidthImg cardWidthImgDis" />
-      <img src="{% static 'img/book2.jpg' %}" class="cardWidthImg" />
-      <img src="{% static 'img/book3.jpg' %}" class="cardWidthImg cardWidthImgDis" />
+      <img alt="Book-cover Image 1" src="{% static 'img/book1.jpg' %}" class="cardWidthImg" />
+      <img alt="Book-cover Image 2" src="{% static 'img/book2.jpg' %}" class="cardWidthImg" />
+      <img alt="Book-cover Image 3" src="{% static 'img/book3.jpg' %}" class="cardWidthImg" />
     </div>
 
     <!-- =============================================================================================================================== -->
 
-    <div class="flex">
-      <div class="container introDiv mt-5">
+    <main>
+      <article>
+        <div class="flex">
+          <div class="container introDiv mt-5">
         <p>
           <span class="your-work">
             50,000+ Best Books Quotes from Bestsellers
@@ -53,15 +55,20 @@
         
       </div>
     </div>
+  </article>
     
-<!-- ==========================================================================================================   -->
-<div style="margin: 5rem; " class="mt-5 mb-5" id="cardMargen">
-    <div id="mart" style="display: flex; flex-wrap:wrap; justify-content: center;" class="mainWrapper mb-10">    
+  <article>
+    <!-- ==========================================================================================================   -->
+    <div style="margin: 5rem; " class="mt-5 mb-5" id="cardMargen">
+      <div id="mart" style="display: flex; flex-wrap:wrap; justify-content: center;" class="mainWrapper mb-10">    
+      </div>
     </div>
-</div>
+  </article>
+</main>
+
 
 <a href="#">
-<button id="scroll-to-top">
+<button id="scroll-to-top" aria-label="scroll-to-top">
   <i class="fa fa-arrow-up" aria-hidden="true"></i>
 </button>
 </a>

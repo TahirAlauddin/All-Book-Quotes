@@ -8,21 +8,13 @@ from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 
 
-def get_book(request, slug):
-    book = Book.objects.get(slug=slug)
-    return render(request, 'core/book.html', context={'book': book})
-
-def list_books(request):
-    books = Book.objects.all()[:20]
-    return render(request, 'core/home.html', context={'books': books})
-
+def index(request):
+    return render(request, 'core/home.html')
 
 def contact_us(request):
     return render(request, 'core/contact-us.html')
 
-
 def about_us(request):
-    print(request.META.get('HTTP_REFERER'))
     return render(request, 'core/about-us.html')
 
 def disclaimer(request):
@@ -34,10 +26,8 @@ def copy_right(request):
 def privacy_policy(request):
     return render(request, 'core/privacy-policy.html')
 
-
 def terms_and_conditions(request):
     return render(request, 'core/terms-and-conditions.html')
-
 
 def get_book_quotes(request, slug):
     quotes = Quote.objects.filter(book__slug=slug)
