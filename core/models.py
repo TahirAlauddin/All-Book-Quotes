@@ -32,12 +32,12 @@ class Book(models.Model):
     votesHtml: returns a string of HTML code that displays the number of votes for the book."""
     
     cover_photo = models.ImageField(upload_to='covers/')
-    name = models.CharField(max_length=200, unique=True)
-    author = models.CharField(max_length=200)
+    name = models.CharField(max_length=255, unique=True)
+    author = models.CharField(max_length=255)
     rating = models.FloatField(null=True)
     votes = models.BigIntegerField(null=True)
     pages = models.IntegerField(null=True)
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(max_length=255, null=True)
     affiliate_link = models.URLField('Amazon Affiliate Link', null=True)
     external_link = models.URLField('External Link', null=True)
     external_link_text = models.CharField('External Link Text', max_length=255, null=True)
@@ -71,7 +71,7 @@ class Book(models.Model):
     @property
     def votesHtml(self):
         votes = format_number(self.votes).strip()
-        return f"({votes})"
+        return f"({votes} votes)"
 
 
 class Quote(models.Model):

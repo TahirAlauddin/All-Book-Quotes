@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('allbookquotes-django-admin/', admin.site.urls),
+    path('allbooksquotes-django-admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
     path('api/', include('core.api_urls')),
     path('', include('core.urls')),

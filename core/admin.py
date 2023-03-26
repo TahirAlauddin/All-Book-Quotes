@@ -6,7 +6,6 @@ from .models import *
 class QuoteAdmin(admin.ModelAdmin):
     search_fields = ('text', 'book__name')
 
-
 class QuoteInline(admin.TabularInline):
     model = Quote
 

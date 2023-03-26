@@ -150,10 +150,10 @@
             <span class="your-work"> {{book.name}} </span>
           </p>
           <div>  {{book.pages}} Pages</div>
-          <div class="introText container">
+          <div class="container">
           {{book.starsHtml|safe}}
           </div>
-          <div class="introText container" style="font-size:0.9rem">{{book.votesHtml}}</div>
+          <div class="container" style="font-size:0.9rem">{{book.votesHtml|safe}}</div>
           <div class="mt-1 btns">
             <a target="_blank" class="nav-link active mx-2" aria-current="page" href={% if book.affiliate_link %}{{book.affiliate_link}}{% else %}https://amazon.com{% endif %}>
               <button class="Btn mt-1 mb-5" style="width: 12rem">

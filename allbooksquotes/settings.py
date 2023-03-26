@@ -162,15 +162,22 @@ AUTH_USER_MODEL = 'users.BooksQuotesUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',  # Remove this line
+    ]
 }
 
 
 # Production Settings
-# if not DEBUG:
-#     CSRF_COOKIE_SECURE = True
-#     SESSION_COOKIE_SECURE = True
-#     SECURE_SSL_REDIRECT = True
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    CSRF_TRUSTED_ORIGINS = ['https://*.allbooksquotes.com']
+#   CSRF_COOKIE_SECURE = True
+#   SESSION_COOKIE_SECURE = True
+#   SECURE_SSL_REDIRECT = True
 
 # Project Specific Settings
 QUOTES_MEDIA_PATH = 'quotes'

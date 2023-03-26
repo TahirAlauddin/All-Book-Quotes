@@ -55,7 +55,7 @@ async function getBooksBySearch(search) {
 }
 
 async function showBooks(search=null) {
-  let books;
+  let books, votes;
   if (search !== null) {
     // If search parameter passed, use ?search option
     books = await getBooksBySearch(search);

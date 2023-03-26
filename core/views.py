@@ -1,10 +1,11 @@
 from django.db.models.functions import Random
 from django.shortcuts import render
+from django.conf import settings
 from .models import Book, Quote
 from .serializers import BookSerializer, QuoteSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
-import random
+from rest_framework.response import Response
 
 
 def get_book(request, slug):
@@ -21,6 +22,7 @@ def contact_us(request):
 
 
 def about_us(request):
+    print(request.META.get('HTTP_REFERER'))
     return render(request, 'core/about-us.html')
 
 def disclaimer(request):
@@ -57,9 +59,41 @@ class BookModelViewSet(ModelViewSet):
     search_fields = ['name', 'author']
     http_method_names = ['get', 'options']
 
+    def list(self, request, *args, **kwargs):
+        # Check if the request was made from allbooksquotes.com
+        http_referer = request.META.get('HTTP_REFERER', '')
+        for allowed_host in settings.ALLOWED_HOSTS:
+            if allowed_host in http_referer:
+                return super().list(request, *args, **kwargs)
+        return Response({'error': 'Unauthorized request'})
+    
+    def retrieve(self, request, *args, **kwargs):
+        # Check if the request was made from allbooksquotes.com
+        http_referer = request.META.get('HTTP_REFERER', '')
+        for allowed_host in settings.ALLOWED_HOSTS:
+            if allowed_host in http_referer:
+                return super().retrieve(request, *args, **kwargs)
+        return Response({'error': 'Unauthorized request'})
+    
 
 class QuoteModelViewSet(ModelViewSet):
     queryset = Quote.objects.all()
     serializer_class = QuoteSerializer
     http_method_names = ['get', 'options']
+    
+    def list(self, request, *args, **kwargs):
+        # Check if the request was made from allbooksquotes.com
+        http_referer = request.META.get('HTTP_REFERER', '')
+        for allowed_host in settings.ALLOWED_HOSTS:
+            if allowed_host in http_referer:
+                return super().list(request, *args, **kwargs)
+        return Response({'error': 'Unauthorized request'})
+    
+    def retrieve(self, request, *args, **kwargs):
+        # Check if the request was made from allbooksquotes.com
+        http_referer = request.META.get('HTTP_REFERER', '')
+        for allowed_host in settings.ALLOWED_HOSTS:
+            if allowed_host in http_referer:
+                return super().retrieve(request, *args, **kwargs)
+        return Response({'error': 'Unauthorized request'})
     
