@@ -6,8 +6,9 @@ from .serializers import BookSerializer, QuoteSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
+from django.views.decorators.cache import cache_page
 
-
+@cache_page(5 * 60)
 def index(request):
     return render(request, 'core/home.html')
 
@@ -29,10 +30,9 @@ def privacy_policy(request):
 def terms_and_conditions(request):
     return render(request, 'core/terms-and-conditions.html')
 
+@cache_page(5 * 60)
 def get_book_quotes(request, slug):
-    return render(request, 'core/quotes.html', {
-                   'book': Book.objects.get(slug=slug)
-                   })
+    return render(request, 'core/quotes.html', {'book': Book.objects.get(slug=slug)})
 
 
 class BookModelViewSet(ModelViewSet):

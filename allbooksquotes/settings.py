@@ -181,3 +181,14 @@ if not DEBUG:
 
 # Project Specific Settings
 QUOTES_MEDIA_PATH = 'quotes'
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}

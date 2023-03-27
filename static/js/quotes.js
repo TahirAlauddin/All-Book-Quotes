@@ -7,6 +7,7 @@ let limit = 5;
 let offset = 0;
 let isLoading = false;
 let searched = false;
+let totalQuotes = 0;
 
 function hasQueryParams(url) {
   return url.includes('?');
@@ -145,12 +146,13 @@ async function getRandomBooks() {
 }
 
 async function showInterestingBooks() {
+  let starsHtml;
   const books = await getRandomBooks();
   let interestingBooksDiv = document.getElementById('mart');
   books['results'].forEach(book => {
     
     let votes = formatNumber(book.votes);
-    let starsHtml = '<span class="rating-stars">';
+    starsHtml = '<span class="rating-stars">';
     
     for (let i = 0; i < 5; i++) {
       if (i < book.rating) {
@@ -205,6 +207,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
     } else {
       facebookUrl = `href="https://www.facebook.com/sharer.php?u=${url}#${i}"`
     }
+    totalQuotes += 1;
     quoteElement.innerHTML = `
         <div class="row justify-content-center">
           <div class="col-12 col-lg-8">
@@ -214,7 +217,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                   <div class="q-i-wrapper">
                     <div class="q-i-container">
                         <img
-                          alt="Quote Image with text id ${i+1}"
+                          alt="Quote Image with text id ${totalQuotes}"
                           data-src="${quote.image}"
                           width="1920"
                           height="1080"
@@ -319,7 +322,17 @@ function fetchPosts() {
 // Event listener to trigger fetchPosts() when the user scrolls to the bottom of the page
 window.addEventListener('scroll', () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  if (scrollTop + clientHeight >= scrollHeight - 2000 && !isLoading) {
+  let bottomMargin = 2000;
+  let width = window.innerWidth;
+  if (width < 780) {
+    bottomMargin = 4000;
+  } else if (width < 1200) {
+    bottomMargin = 3500;
+  } else if (width < 1650 ) {
+    bottomMargin = 2500;
+  }
+
+  if (scrollTop + clientHeight >= scrollHeight - bottomMargin && !isLoading) {
     fetchPosts();
   }
 });

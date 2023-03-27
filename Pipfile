@@ -12,6 +12,8 @@ djangorestframework = "*"
 drf-nested-routers = "*"
 django-filter = "*"
 beautifulsoup4 = "*"
+psycopg2 = "*"
+django-redis = "*"
 
 [dev-packages]
 
