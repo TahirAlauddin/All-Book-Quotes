@@ -1,6 +1,13 @@
 const mainWrapper = document.getElementById("mart");
+
+let width= window.innerWidth;
+let height= window.innerHeight;
+
 let limit = 20;
 let offset = 0;
+if (width < 600) {
+  limit = 10;
+}
 
 function formatNumber(num) {
   const suffixes = ['', 'K', 'M', 'B', 'T'];

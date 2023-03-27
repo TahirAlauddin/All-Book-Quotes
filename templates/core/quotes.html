@@ -42,7 +42,7 @@
     border-radius: 30px !important;
     font-weight: bold;
   }
-  .footer h4 {
+  .footer h1 {
     color: white;
   }
   .pd-10 {
@@ -183,87 +183,92 @@
 </section>
 
 <section id="single-quote-image">
-  <div class="container">
+  <div id="quotes" class="container">
+{% comment %}     
     {% for quote in quotes %}
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8">
-        <div class="wrap-quote-card mt-4 mb-4">
-          <div class="quote-card">
-            <div class="q-wrapper">
-              <div class="q-i-wrapper">
-                <div class="q-i-container">
-                    <img
-                      data-src="{{quote.image.url}}"
-                      width="1920"
-                      height="1080"
-                      class="w-100 mb-3 ls-is-cached lazyloaded quote-image"
-                      src="{{quote.image.url}}"
-                    />
-                    <div id="{{forloop.counter0}}"  class='quote-text'>
-                      {{quote.text}}
-                    </div>
-                </div>
-                <div class="clearfix"></div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <div class="wrap-quote-card mt-4 mb-4">
+            <div class="quote-card">
+              <div class="q-wrapper">
+                <div class="q-i-wrapper">
+                  <div class="q-i-container">
+                      <img
+                        data-src="{{quote.image.url}}"
+                        width="1920"
+                        height="1080"
+                        class="w-100 mb-3 ls-is-cached lazyloaded quote-image"
+                        src="{{quote.image.url}}"
+                      />
+                      <div id="{{forloop.counter0}}"  class='quote-text'>
+                        {{quote.text}}
+                      </div>
+                  </div>
+                  <div class="clearfix"></div>
 
-                <div class="q-i-footer">
-                  <div 
-                    class="d-flex justify-content-center mb-4"
-                  >
-                    <div class="social-icons">
-                      <a
-                        {% if request.get_host == 'localhost:8000' %}
-                        href="https://www.facebook.com/sharer.php?u=https://127.0.0.1{{request.path}}#{{forloop.counter0}}"
-                        {% else %}
-                        href="https://www.facebook.com/sharer.php?u=https://{{request.get_host}}{{request.path}}#{{forloop.counter0}}"
-                        {% endif %}
-                        class="rounded-circle me-3"
-                        rel="nofollow"
-                        target="_blank"
-                        ><svg
-                          viewBox="0 0 10 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M10 .14v3.157L8.187 3.3c-1.424 0-1.696.7-1.696 1.718v2.258h3.387l-.44 3.532H6.491V20H2.958v-9.19H0V7.278h2.957V4.673C2.957 1.65 4.742 0 7.36 0A23.3 23.3 0 0 1 10 .14Z"
-                            fill="#A1C1EF"
-                          ></path></svg
-                      ></a>
-                      <a
-                        href="mailto:allbookquotes@gmail.com"
-                        style="text-decoration: none;"
-                        class="rounded-circle me-3"
-                        rel="nofollow"
-                        target="_blank">
-                        <img src="{% static 'img/share-email.png' %}" style="height: 1.4rem;" />  
-                        </a>
-                      <a
-                        href="https://twitter.com/share?url={{request.get_host}}/{{request.path}}&amp;text={{quote.text}} - {{book.author}}"
-                        class="rounded-circle me-3"
-                        rel="nofollow"
-                        target="_blank"
-                        ><svg
-                          viewBox="0 0 20 18"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M17.952 4.481a14.07 14.07 0 0 1-1.42 6.798c-1.027 2.08-2.55 3.806-4.404 4.99-1.853 1.185-3.964 1.783-6.103 1.728-2.14-.055-4.223-.76-6.025-2.04 2.17.29 4.355-.388 6.074-1.882a3.854 3.854 0 0 1-2.372-.895 4.562 4.562 0 0 1-1.46-2.257c.615.13 1.248.104 1.852-.078-.937-.21-1.778-.777-2.38-1.6a4.868 4.868 0 0 1-.91-2.914c.57.351 1.207.546 1.858.568C1.794 6.256 1.18 5.27.944 4.143a4.976 4.976 0 0 1 .45-3.312 11.961 11.961 0 0 0 3.771 3.37 10.775 10.775 0 0 0 4.684 1.38 5 5 0 0 1 .258-2.909c.372-.911 1.006-1.661 1.802-2.134A3.762 3.762 0 0 1 14.512.06c.891.162 1.71.645 2.328 1.374A7.73 7.73 0 0 0 19.447.332c-.306 1.053-.947 1.946-1.804 2.514A7.581 7.581 0 0 0 20 2.131a8.89 8.89 0 0 1-2.047 2.352"
-                            fill="#A1C1EF"
-                          ></path></svg
-                      ></a>
-                    </div>
+                  <div class="q-i-footer">
+                    <div 
+                      class="d-flex justify-content-center mb-4"
+                    >
+                      <div class="social-icons">
+                        <a 
+                        aria-label="Share {{quote.text}} on Facebook"
+                          {% if request.get_host == 'localhost:8000' %}
+                          href="https://www.facebook.com/sharer.php?u=https://127.0.0.1{{request.path}}#{{forloop.counter0}}"
+                          {% else %}
+                          href="https://www.facebook.com/sharer.php?u=https://{{request.get_host}}{{request.path}}#{{forloop.counter0}}"
+                          {% endif %}
+                          class="rounded-circle me-3"
+                          rel="nofollow"
+                          target="_blank"
+                          ><svg
+                            viewBox="0 0 10 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M10 .14v3.157L8.187 3.3c-1.424 0-1.696.7-1.696 1.718v2.258h3.387l-.44 3.532H6.491V20H2.958v-9.19H0V7.278h2.957V4.673C2.957 1.65 4.742 0 7.36 0A23.3 23.3 0 0 1 10 .14Z"
+                              fill="#A1C1EF"
+                            ></path></svg
+                        ></a>
+                        <a
+                          aria-label="Share {{quote.text}} using Email"
+                          href="mailto:allbookquotes@gmail.com"
+                          style="text-decoration: none;"
+                          class="rounded-circle me-3"
+                          rel="nofollow"
+                          target="_blank">
+                          <img src="{% static 'img/share-email.png' %}" style="height: 1.4rem;" />  
+                          </a>
+                        <a
+                          aria-label="Share {{quote.text}} on Twitter"
+                          href="https://twitter.com/share?url={{request.get_host}}/{{request.path}}&amp;text={{quote.text}} - {{book.author}}"
+                          class="rounded-circle me-3"
+                          rel="nofollow"
+                          target="_blank"
+                          ><svg
+                            viewBox="0 0 20 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M17.952 4.481a14.07 14.07 0 0 1-1.42 6.798c-1.027 2.08-2.55 3.806-4.404 4.99-1.853 1.185-3.964 1.783-6.103 1.728-2.14-.055-4.223-.76-6.025-2.04 2.17.29 4.355-.388 6.074-1.882a3.854 3.854 0 0 1-2.372-.895 4.562 4.562 0 0 1-1.46-2.257c.615.13 1.248.104 1.852-.078-.937-.21-1.778-.777-2.38-1.6a4.868 4.868 0 0 1-.91-2.914c.57.351 1.207.546 1.858.568C1.794 6.256 1.18 5.27.944 4.143a4.976 4.976 0 0 1 .45-3.312 11.961 11.961 0 0 0 3.771 3.37 10.775 10.775 0 0 0 4.684 1.38 5 5 0 0 1 .258-2.909c.372-.911 1.006-1.661 1.802-2.134A3.762 3.762 0 0 1 14.512.06c.891.162 1.71.645 2.328 1.374A7.73 7.73 0 0 0 19.447.332c-.306 1.053-.947 1.946-1.804 2.514A7.581 7.581 0 0 0 20 2.131a8.89 8.89 0 0 1-2.047 2.352"
+                              fill="#A1C1EF"
+                            ></path></svg
+                        ></a>
+                      </div>
 
-                      <button class="copy-button Btn">
-                        Copy Quote
-                    </button>
+                        <button class="copy-button Btn">
+                          Copy Quote
+                      </button>
 
-                    <div>
-                    </br>
+                      <div>
+                      </br>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -272,26 +277,10 @@
           </div>
         </div>
       </div>
-    </div>
-    {% endfor %} 
-
+    {% endfor %}  {% endcomment %}
   </div>
 </section>
 
-<script>
-  
-  let starsHtml = '<span class="rating-stars">';
-
-    for (let i = 0; i < 5; i++) {
-      if (i < book.rating) {
-        starsHtml += '&#9733';
-      } else {
-        starsHtml += '&#9734';
-      }
-    }
-    starsHtml += '</span>'
-
-</script>
 
 <section>
   <div class="mt-5 mb-5" id="cardMargen">
@@ -324,7 +313,6 @@
 </section>
 
 <script>
-   
   const copyButton = document.getElementsByClassName('copy-button');
   let button;
   for (let i = 0; i < copyButton.length; i++) {
@@ -352,6 +340,8 @@
 
 <div class="mb-4">
 </div>
+
+<script src="{% static 'js/quotes.js' %}"></script>
 
 {% include 'footer.html' %}
 {% endblock %}

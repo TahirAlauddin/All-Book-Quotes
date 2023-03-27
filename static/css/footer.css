@@ -45,10 +45,11 @@
   }
 }
 
-
-
-
-
+@media screen and (max-width: 400px) {
+  .social-icons a {
+    margin-right: 0px;
+  }
+}
 
 
 /* Footer */

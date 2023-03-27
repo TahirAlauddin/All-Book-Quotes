@@ -30,15 +30,10 @@ def terms_and_conditions(request):
     return render(request, 'core/terms-and-conditions.html')
 
 def get_book_quotes(request, slug):
-    quotes = Quote.objects.filter(book__slug=slug)
     interesting_books = Book.objects.order_by(Random()).distinct()[:6]
-    search_filter = request.GET.get('search')
-    if search_filter:
-        quotes = quotes.filter(text__icontains=search_filter)
-    return render(request, 'core/quotes.html', 
-                  {'quotes': quotes,
-                   'interesting_books': interesting_books,
-                   'book': Book.objects.get(slug=slug)})
+    return render(request, 'core/quotes.html', {
+                   'book': Book.objects.get(slug=slug),
+                   'interesting_books': interesting_books})
 
 
 class BookModelViewSet(ModelViewSet):
@@ -67,9 +62,17 @@ class BookModelViewSet(ModelViewSet):
     
 
 class QuoteModelViewSet(ModelViewSet):
-    queryset = Quote.objects.all()
     serializer_class = QuoteSerializer
     http_method_names = ['get', 'options']
+    filter_backends = [SearchFilter]
+    search_fields = ['text']
+    http_method_names = ['get', 'options']
+
+
+    def get_queryset(self):
+        book_filter = self.kwargs['book_slug']
+        queryset = Quote.objects.filter(book__slug=book_filter)
+        return queryset
     
     def list(self, request, *args, **kwargs):
         # Check if the request was made from allbooksquotes.com

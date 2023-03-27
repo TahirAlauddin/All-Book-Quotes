@@ -10,5 +10,5 @@ quotes_router.register('quotes', QuoteModelViewSet, basename='book-quotes')
 
 urlpatterns = [
     path('', include(books_router.urls)),
-    # path('', include(quotes_router.urls)),
+    path('', include(quotes_router.urls)),
 ]

@@ -214,9 +214,9 @@
     display: none;
     }
   .cardWidthImg {
-    /* position: absolute; */
-    width: 8rem;
-    height: 13rem;
+    margin-top: -3rem;
+    width: 7.5rem;
+    height: 12rem;
   }       
 }
 
@@ -336,5 +336,8 @@
   }
   .qu{
     display: flex; justify-content: center; width: 60%"
+  }
+  .cover {
+    display: none;
   }
 }

@@ -30,7 +30,7 @@ using Unsplash API to retrive landscape images.'
                     self.stdout.write(self.style.SUCCESS(f"{filename} downloaded with success!"))
 
         books_slug = options['book_slug']
-        if '*' in books_slug:
+        if 'all' in books_slug:
             for slug in Book.objects.values_list('slug', flat=True):
                 quotes = Quote.objects.filter(book__slug=slug)
                 self.save_quote_images(quotes)

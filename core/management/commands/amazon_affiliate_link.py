@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         books_slug = options['book_slug']
-        if '*' in books_slug:
+        if 'all' in books_slug:
             for book in Book.objects.all():
                 self.save_affiliate_link(book)
 
