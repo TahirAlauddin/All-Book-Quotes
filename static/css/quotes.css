@@ -1,5 +1,107 @@
 .quotes-share-links {
-    margin-right: 20px;
-    display: inherit;
-    margin-top: 5px;
+  margin-right: 20px;
+  display: inherit;
+  margin-top: 5px;
+}
+
+
+* {
+  font-family: 'Manrope' Helvetica Arial Sans-serif;
+}
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: inline-block;
+}
+#headerAds {
+  width: 100%;
+  min-height: 280px;
+}
+
+.footer h1 {
+  color: white;
+}
+.quote-text {
+  font-size: 1rem!important;
+  padding: 1rem;
+}
+
+.copy-button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.copy-button.copied {
+  background-color: #008CBA;
+}
+
+.copy-button.copied:after {
+  content: "Copied!";
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.copy-button.copied:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 20px 10px;
+  border-color: transparent transparent #008CBA transparent;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.copy-button.copied:active:before {
+  opacity: 1;
+}
+
+.copy-button.copied:active:after {
+  opacity: 1;
+}
+
+.quote-image {
+  height: 28rem !important;
+  object-fit: cover;
+}
+
+#scroll-to-top {
+  bottom: 2rem;
+}
+
+@media screen and (max-width: 660px) {
+  .quote-image {
+    height: 15rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {  
+  #scroll-to-top {
+    font-size: 17px;
+    width: 40px;
+    bottom: 1rem;
+  }
+  .copy-button {
+    padding: 5px;
+    font-size: 12px;
+  }
 }

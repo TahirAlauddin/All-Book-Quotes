@@ -85,16 +85,15 @@ bookElement.innerHTML = `
        </button>
    </div>
  </div>
-</div>   
-`;
-mainWrapper.appendChild(bookElement);
-if (book.description) {
-  description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
-}
-if (book.external_link) {
-  externalLink.innerHTML = `<span>${book.source_or_credit_text}</span><a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
-}
-}
+</div>`;
+  mainWrapper.appendChild(bookElement);
+  if (book.description) {
+    description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
+  }
+  if (book.external_link) {
+    externalLink.innerHTML = `<span>${book.source_or_credit_text}</span><a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
+  }
+  }
 
 async function getQuotesBySearch(book_slug, limit, offset, search) {
   let response = await fetch(
@@ -129,6 +128,64 @@ async function getQuotes(book_slug, limit, offset) {
     return response;
 }
 
+
+async function getRandomBooks() {
+  let response = await fetch(
+    `/api/books/?random=True`,
+    {
+      method: "GET",
+      mode: "cors",
+    }
+    )
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return response;
+}
+
+async function showInterestingBooks() {
+  const books = await getRandomBooks();
+  let interestingBooksDiv = document.getElementById('mart');
+  books['results'].forEach(book => {
+    
+    let votes = formatNumber(book.votes);
+    let starsHtml = '<span class="rating-stars">';
+    
+    for (let i = 0; i < 5; i++) {
+      if (i < book.rating) {
+        starsHtml += '&#9733';
+      } else {
+        starsHtml += '&#9734';
+      }
+    }
+    starsHtml += '</span>'
+    
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("albums");
+    bookElement.innerHTML = `
+    <a href="/books/${book.slug}-quotes/" style="text-decoration: none;">
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="${book.cover_photo}" alt="Book Cover">
+        </div>
+        <div class="book-details">
+          <div class="book-title">${book.name}</div>
+          <div class="book-author">${book.author}</div>
+          <div class="book-rating">
+          <span class="rating-value">${book.rating}</span>
+            ${book.starsHtml}
+          <span class="rating-votes">${votes}</span>
+          </div>
+        </div>
+        </div>
+      </a>`;
+    interestingBooksDiv.appendChild(bookElement);
+  });     
+}
+
 async function showQuotes(book_slug, limit, offset, search=null) {
   const book = await getBook(book_slug);
   let facebookUrl, quote, quotes;
@@ -159,6 +216,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                   <div class="q-i-wrapper">
                     <div class="q-i-container">
                         <img
+                          alt="Quote Image with text id ${i+1}"
                           data-src="${quote.image}"
                           width="1920"
                           height="1080"
@@ -201,7 +259,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                             class="rounded-circle me-3"
                             rel="nofollow"
                             target="_blank">
-                            <img src="/static/img/share-email.png" style="height: 1.4rem;" />  
+                            <img alt="Share via Email Image" src="/static/img/share-email.png" style="height: 1.4rem;" />  
                             </a>
                           <a
                             aria-label="Share ${quote.text} on Twitter"
@@ -222,7 +280,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                               ></path></svg
                           ></a>
                         </div>
-                          <button class="copy-button Btn">
+                          <button onclick=copyQuote(${i}) id='button-${i}' class="copy-button Btn">
                             Copy Quote
                           </button>
                       </div>
@@ -260,7 +318,6 @@ function fetchPosts() {
 }
 
 
-
 // Event listener to trigger fetchPosts() when the user scrolls to the bottom of the page
 window.addEventListener('scroll', () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -270,4 +327,20 @@ window.addEventListener('scroll', () => {
 });
 
 
+function copyQuote(id) {
+  button = document.getElementById('button-'+id);
+  quoteDivElement = document.getElementById(id);
+  const textToCopy = quoteDivElement.innerHTML.trim();
+  navigator.clipboard.writeText(textToCopy);
+  button.classList.add('copied');
+  alert("Quote copied!");
+
+  setTimeout(() => {
+    button.classList.add('copied');
+  }, 1000);
+}
+
+
+
 fetchPosts()
+showInterestingBooks()
