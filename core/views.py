@@ -31,7 +31,8 @@ def terms_and_conditions(request):
 
 def get_book_quotes(request, slug):
     return render(request, 'core/quotes.html', {
-                   'book': Book.objects.get(slug=slug)})
+                   'book': Book.objects.get(slug=slug)
+                   })
 
 
 class BookModelViewSet(ModelViewSet):

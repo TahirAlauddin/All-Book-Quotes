@@ -31,7 +31,6 @@
 .copy-button {
   border: none;
   color: white;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -102,6 +101,6 @@
   }
   .copy-button {
     padding: 5px;
-    font-size: 12px;
+    font-size: 12px !important;
   }
 }

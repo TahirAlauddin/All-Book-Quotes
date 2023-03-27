@@ -17,33 +17,7 @@
 <!-- ======================================================================================================================== -->
 <section>
   <div id="topData" class="mainWrapper">
-    <div class="album">
-     <div>
-      <img src="{% static 'img/cover.jpg' %} " alt="" style="width: 100%; max-height: 20rem;" /></div>
-      <div class="cardsDiv">
-        <img alt="Book cover Image" src="{{book.cover_photo.url}}" class="cardWidthImg" />
-      </div>
-      <div class="flex">
-        <div class="container introDiv mt-5">
-          <p>
-            <span class="your-work"> {{book.name}} </span>
-          </p>
-          <div>  {{book.pages}} Pages</div>
-          <div class="container">
-          {{book.starsHtml|safe}}
-          </div>
-          <div class="container" style="font-size:0.9rem">{{book.votesHtml|safe}}</div>
-          <div class="mt-1 btns">
-            <a target="_blank" class="nav-link active mx-2" aria-current="page" href={% if book.affiliate_link %}{{book.affiliate_link}}{% else %}https://amazon.com{% endif %}>
-              <button class="Btn mt-1 mb-5" style="width: 12rem">
-                Buy On Amazon
-           </button>
-         </a>
-       </div>
-     </div>
-   </div>   
   </div>
-</div>
 
   <div class="container">
     {% if book.description %}

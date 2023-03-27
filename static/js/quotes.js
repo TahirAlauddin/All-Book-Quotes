@@ -46,6 +46,7 @@ async function getBook(book_slug) {
 
 async function showBook() {
   const book = await getBook(slug);
+  let showBookDiv = document.getElementById('topData');
   let votes = formatNumber(book.votes);
   let starsHtml = '<span class="rating-stars">';
 
@@ -58,42 +59,40 @@ async function showBook() {
   }
   starsHtml += '</span>'
 
-const bookElement = document.createElement("div");
-bookElement.classList.add("album");
-let cover_photo = '/static/img/cover.jpg'
-bookElement.innerHTML = `
-
- <div><img src="${cover_photo}" alt="" class="cover" /></div>
-<div class="cardsDiv">
- <img src="${book.cover_photo}" class="cardWidthImg" />
-</div>
-<div class="flex">
- <div class="container introDiv mt-5">
-   <p>
-     <span class="your-work"> ${book.name} </span>
-   </p>
-   <div>  ${book.pages} Pages</div>
-   <div class="introText container">
-    ${starsHtml}
-   </div>
-   <div class="introText container" style="font-size:0.9rem">(${votes})</div>
-   <div class="mt-1 btns">
-     <button class="Btn mt-1 mb-5" style="width: 12rem">
-         <a target="_blank" class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
-         Buy On Amazon
-        </a>
-       </button>
-   </div>
- </div>
-</div>`;
-  mainWrapper.appendChild(bookElement);
-  if (book.description) {
-    description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
-  }
-  if (book.external_link) {
-    externalLink.innerHTML = `<span>${book.source_or_credit_text}</span><a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
-  }
-  }
+  const bookElement = document.createElement("div");
+  bookElement.classList.add("album");
+  bookElement.innerHTML = `
+  <img src='/static/img/cover.webp' alt="" style="width: 100%; max-height: 20rem;" /></div>
+  <div class="cardsDiv">
+  <img alt="Book cover Image" src="${book.cover_photo}" class="cardWidthImg" />
+  </div>
+  <div class="flex">
+  <div class="container introDiv mt-5">
+    <p>
+      <span class="your-work">${book.name}</span>
+    </p>
+    <div>${book.pages} Pages</div>
+    <div class="container">
+      ${starsHtml}
+    </div>
+    <div class="container" style="font-size:0.9rem">(${votes})</div>
+    <div class="mt-1 btns">
+      <button class="Btn mt-1 mb-5" style="width: 12rem">
+          <a target="_blank" class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
+          Buy On Amazon
+          </a>
+        </button>
+    </div>
+  </div>
+  </div>`;
+    showBookDiv.appendChild(bookElement);
+    if (book.description) {
+      description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
+    }
+    if (book.external_link) {
+      externalLink.innerHTML = `<span>${book.source_or_credit_text}</span><a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
+    }
+}
 
 async function getQuotesBySearch(book_slug, limit, offset, search) {
   let response = await fetch(
@@ -127,7 +126,6 @@ async function getQuotes(book_slug, limit, offset) {
     });
     return response;
 }
-
 
 async function getRandomBooks() {
   let response = await fetch(
@@ -341,6 +339,6 @@ function copyQuote(id) {
 }
 
 
-
+showBook()
 fetchPosts()
 showInterestingBooks()
