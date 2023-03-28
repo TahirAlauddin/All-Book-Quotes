@@ -50,3 +50,5 @@ class BooksQuotesUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self) -> str:
         return str(self.username)
 
+    class Meta:
+        verbose_name = "User"
