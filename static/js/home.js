@@ -140,7 +140,17 @@ function fetchPosts() {
 // Event listener to trigger fetchPosts() when the user scrolls to the bottom of the page
 window.addEventListener('scroll', () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
+  let bottomMargin = 200;
+  let width = window.innerWidth;
+  if (width < 780) {
+    bottomMargin = 400;
+  } else if (width < 1200) {
+    bottomMargin = 350;
+  } else if (width < 1650 ) {
+    bottomMargin = 250;
+  }
+
+  if (scrollTop + clientHeight >= scrollHeight - bottomMargin && !isLoading) {
     fetchPosts();
   }
 });

@@ -50,7 +50,7 @@ class BookModelViewSet(ModelViewSet):
         for allowed_host in settings.ALLOWED_HOSTS:
             if allowed_host in http_referer:
                 if random:
-                    self.queryset = Book.objects.order_by(Random()).distinct()[:6]
+                    self.queryset = Book.objects.order_by(Random()).distinct()[:3]
                 return super().list(request, *args, **kwargs)
         return Response({'error': 'Unauthorized request'})
     

@@ -50,6 +50,12 @@ async function showBook() {
   let showBookDiv = document.getElementById('topData');
   let votes = formatNumber(book.votes);
   let starsHtml = '<span class="rating-stars">';
+  let affiliate_link;
+  if (book.affiliate_link) {
+    affiliate_link = book.affiliate_link;
+  } else {
+    affiliate_link = 'https://amazon.com/'
+  }
 
   for (let i = 0; i < 5; i++) {
     if (i < book.rating) {
@@ -59,6 +65,7 @@ async function showBook() {
     }
   }
   starsHtml += '</span>'
+
 
   const bookElement = document.createElement("div");
   bookElement.classList.add("album");
@@ -79,7 +86,7 @@ async function showBook() {
     <div class="container" style="font-size:0.9rem">(${votes})</div>
     <div class="mt-1 btns">
       <button class="Btn mt-1 mb-5" style="width: 12rem">
-          <a target="_blank" class="nav-link active mx-2" aria-current="page" href=${book.affiliate_link}>
+          <a target="_blank" class="nav-link active mx-2" aria-current="page" href=${affiliate_link}>
           Buy On Amazon
           </a>
         </button>
@@ -146,7 +153,6 @@ async function getRandomBooks() {
 }
 
 async function showInterestingBooks() {
-  let starsHtml;
   const books = await getRandomBooks();
   let interestingBooksDiv = document.getElementById('mart');
   books['results'].forEach(book => {
@@ -176,7 +182,7 @@ async function showInterestingBooks() {
           <div class="book-author">${book.author}</div>
           <div class="book-rating">
           <span class="rating-value">${book.rating}</span>
-            ${book.starsHtml}
+            ${starsHtml}
           <span class="rating-votes">${votes}</span>
           </div>
         </div>
@@ -325,11 +331,11 @@ window.addEventListener('scroll', () => {
   let bottomMargin = 2000;
   let width = window.innerWidth;
   if (width < 780) {
-    bottomMargin = 4000;
+    bottomMargin = 3000;
   } else if (width < 1200) {
-    bottomMargin = 3500;
-  } else if (width < 1650 ) {
     bottomMargin = 2500;
+  } else if (width < 1650 ) {
+    bottomMargin = 1500;
   }
 
   if (scrollTop + clientHeight >= scrollHeight - bottomMargin && !isLoading) {

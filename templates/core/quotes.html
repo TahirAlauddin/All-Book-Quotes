@@ -1,11 +1,14 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}
 <title>{{book.count_quotes}}+ quotes from {{book.name}} by {{book.author}}</title>
 {% endblock title %}
 
 {% block content %}
-{% load static %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7179367717730230"
+crossorigin="anonymous"></script>
+
 <link
   rel="stylesheet"
   href="{% static 'css/extra.css' %}"
@@ -47,7 +50,6 @@
       Related Book Quotes
     </h1>
     <div id="mart" style="display: flex; flex-wrap:wrap; justify-content: center; margin-top: 1rem;" class="mainWrapper mb-10">
-
     </div>
   </div>
 </section>
