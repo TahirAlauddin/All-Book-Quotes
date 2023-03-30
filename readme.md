@@ -1,10 +1,24 @@
 
 # **ALLBOOKSQUOTES DJANGO APP**
 AllBooksQuotes is a Web application made with Django which works with Amazon Affiliate Program and Google Adsense. It is a community for enthusiast Book Readers to read over 50,000 quotes from over 8,000 books from different categories.
+
+
 <img src="static/img/ABQ.png" alt="MarineGEO circle logo" style="height: 30%; width: 30%;"/>
 
 
 ### Console Login:
+STEP 1:
+
+![STEP 1](static/img/documentation/step1.jpg "MarineGEO logo")
+
+STEP 2:
+![STEP 2](static/img/documentation/step2.jpg "MarineGEO logo")
+
+STEP 3:
+![STEP 3](static/img/documentation/step3.jpg "MarineGEO logo")
+
+STEP 4:
+![STEP 4](static/img/documentation/step4.jpg "MarineGEO logo")
 
 
 ### **Working Directory:**
