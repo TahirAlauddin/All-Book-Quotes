@@ -50,7 +50,7 @@ async function showBook() {
   let showBookDiv = document.getElementById('topData');
   let votes = formatNumber(book.votes);
   let starsHtml = '<span class="rating-stars">';
-  let affiliate_link;
+  let affiliate_link, paragraphElement;
   if (book.affiliate_link) {
     affiliate_link = book.affiliate_link;
   } else {
@@ -95,10 +95,16 @@ async function showBook() {
   </div>`;
     showBookDiv.appendChild(bookElement);
     if (book.description) {
-      description.innerHTML = `<p style="font-size: 2rem">${book.description}</p>`
+      description_lines = book.description.trim().split('\n');
+      paragraphElement = '';
+      for (let i=0; i < description_lines.length; i++) {
+        line = description_lines[i];
+        paragraphElement += `<p>${line}</p>`;
+        description.innerHTML = paragraphElement;
+      }
     }
     if (book.external_link) {
-      externalLink.innerHTML = `<span>${book.source_or_credit_text}</span><a style="font-size: 2rem" href=${book.external_link}>${book.external_link_text}</a>`
+      externalLink.innerHTML = `<span>${book.source_or_credit_text}:</span><a href=${book.external_link}>${book.external_link_text}</a>`
     }
 }
 

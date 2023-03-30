@@ -67,18 +67,18 @@ input {
   min-width: 200px;
 }
 #externalLink {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 #description p {
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 992px) {
   #description p {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   #externalLink {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
 }
@@ -106,9 +106,6 @@ input {
   .navbar {
     padding: 10px 10px;
   }
-  #description p {
-    font-size: 1rem;
-  }
   
 }
 @media screen and (max-width: 400px) {
@@ -116,9 +113,6 @@ input {
     width: 100%;
     margin: 0 1rem 0 1rem;
     min-width: 100px;
-    }
-    #externalLink {
-      font-size: 0.8rem;
     }
 }
 

@@ -4,9 +4,9 @@ from ._search_amazon import search_items
 
 
 class Command(BaseCommand):
-    
+
     help = 'Add Amazon Affiliate Link to the Book'
-    
+
     def add_arguments(self, parser):
         parser.add_argument('book_slug', nargs='+', type=str)
 

@@ -22,18 +22,13 @@ crossorigin="anonymous"></script> {% endcomment %}
   <div id="topData" class="mainWrapper">
   </div>
 
-  <div class="container">
-    {% if book.description %}
+  <div style="font-size: 1rem;" class="container">
     <div id="description" style="text-align: center;">
-      <p>{{book.description|linebreaksbr }}</p>
+
     </div>
-    {% endif %}
-    {% if book.external_link %}
     <div id="externalLink" style="text-align: center;">
-      <span style="font-weight: bold;">{{book.source_or_credit_text}}:</span>
-      <a href={{book.external_link}}>{{book.external_link_text}}</a>
+
     </div>
-    {% endif %}
   </div>
   
 </section>

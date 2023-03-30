@@ -30,13 +30,19 @@ def privacy_policy(request):
 def terms_and_conditions(request):
     return render(request, 'core/terms-and-conditions.html')
 
+
+def cookies_policy(request):
+    return render(request, 'core/cookie-policy.html')
+
 @cache_page(5 * 60)
 def get_book_quotes(request, slug):
     return render(request, 'core/quotes.html', {'book': Book.objects.get(slug=slug)})
 
 
 class BookModelViewSet(ModelViewSet):
-    queryset = Book.objects.all()
+    # queryset = Book.objects.all()
+    queryset = Book.objects.order_by(Random()).distinct()
+
     serializer_class = BookSerializer
     lookup_field = 'slug'
     filter_backends = [SearchFilter]

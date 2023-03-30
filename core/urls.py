@@ -10,4 +10,5 @@ urlpatterns = [
     path('copyright/', copy_right, name='copy-right'),
     path('privacy-policy/', privacy_policy, name='privacy-policy'),
     path('terms-and-conditions/', terms_and_conditions, name='terms-and-conditions'),
+    path('cookies-policy/', cookies_policy, name='cookies_policy')
 ]
