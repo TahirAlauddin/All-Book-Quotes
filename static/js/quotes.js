@@ -350,11 +350,13 @@ window.addEventListener('scroll', () => {
 });
 
 
-function copyQuote(id) {
+async function copyQuote(id) {
   button = document.getElementById('button-'+id);
   quoteDivElement = document.getElementById(id);
+  
   const textToCopy = quoteDivElement.innerHTML.trim();
-  navigator.clipboard.writeText(textToCopy);
+  await navigator.clipboard.writeText(textToCopy);
+
   button.classList.add('copied');
   alert("Quote copied!");
 

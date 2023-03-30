@@ -5,6 +5,12 @@
 <title>{{book.count_quotes}}+ quotes from {{book.name}} by {{book.author}}</title>
 {% endblock title %}
 
+{% block extra_meta_tags %}
+<meta property="og:image" content="{{book.cover_photo.url}}" alt="Book Cover" />
+<meta property="og:image:width" content="192" />
+<meta property="og:image:height" content="288" />
+{% endblock extra_meta_tags %}
+
 {% block content %}
 {% comment %} <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7179367717730230"
 crossorigin="anonymous"></script> {% endcomment %}
