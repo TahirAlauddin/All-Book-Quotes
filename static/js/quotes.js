@@ -13,6 +13,12 @@ function hasQueryParams(url) {
   return url.includes('?');
 }
 
+function removeHtmlTags(text) {
+  // Remove HTML tags from text
+  return text.replace(/<[^>]+>/g, '');
+}
+
+
 function formatNumber(num) {
   const suffixes = ['', 'K', 'M', 'B', 'T'];
   let suffixIndex = 0;
@@ -86,7 +92,7 @@ async function showBook() {
     <div class="container" style="font-size:0.9rem">(${votes})</div>
     <div class="mt-1 btns">
       <button class="Btn mt-1 mb-5" style="width: 12rem">
-          <a target="_blank" class="nav-link active mx-2" aria-current="page" href=${affiliate_link}>
+          <a rel="nofollow" target="_blank" class="nav-link active mx-2" aria-current="page" href=${affiliate_link}>
           Buy On Amazon
           </a>
         </button>
@@ -209,12 +215,14 @@ async function showQuotes(book_slug, limit, offset, search=null) {
     quotes = await getQuotes(book_slug, limit, offset);
   }
   let quotes_length = quotes['results'].length;
+  let aria_label;
   for (let i=0; i < quotes_length; i++) {
     const quoteElement = document.createElement("div");
 
     quote = quotes['results'].at(i);
+    aria_label = removeHtmlTags(quote.text);
     
-    if (url.search('localhost')) {
+    if (url.search('localhost') == 0) {
       facebookUrl = `href="https://www.facebook.com/sharer.php?u=127.0.0.1:8000#${i}"`
     } else {
       facebookUrl = `href="https://www.facebook.com/sharer.php?u=${url}#${i}"`
@@ -266,7 +274,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                               ></path></svg
                           ></a>
                           <a
-                            aria-label="Share ${quote.text} using Email"
+                            aria-label="Share ${aria_label} using Email"
                             href="mailto:allbookquotes@gmail.com"
                             style="text-decoration: none;"
                             class="rounded-circle me-3"
@@ -275,7 +283,7 @@ async function showQuotes(book_slug, limit, offset, search=null) {
                             <img alt="Share via Email Image" src="/static/img/share-email.png" style="height: 1.4rem;" />  
                             </a>
                           <a
-                            aria-label="Share ${quote.text} on Twitter"
+                            aria-label="Share ${aria_label} on Twitter"
                             href="https://twitter.com/share?url=${url}&amp;text=${quote.text} - ${book.author}"
                             class="rounded-circle me-3"
                             rel="nofollow"

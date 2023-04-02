@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.files import File
 from core.models import Quote, Book
 import os
+import re
 from ._add_text_to_image import add_text_to_image
 from ._download_images import download_image, random_image_url
 from ._decrease_brightness import decrease_brightness
@@ -43,6 +44,12 @@ using Unsplash API to retrive landscape images.'
                 self.stdout.write(self.style.SUCCESS(f"Quote Images generated successfully for {slug}"))
 
 
+    def remove_html_tags(self, text):
+        # Remove HTML tags from text
+        clean_text = re.sub('<[^<]+?>', '', text)
+        return clean_text
+
+
     def save_quote_images(self, quotes):
         # Get all images in DOWNLOAD_IMAGE_DIRECTORY, assuming their brightness is already taken care of
         images = os.listdir(DOWNLOADED_IMAGE_DIRECTORY)
@@ -52,7 +59,12 @@ using Unsplash API to retrive landscape images.'
 
         for quote, image in zip(quotes, images):
             image_path = os.path.join(DOWNLOADED_IMAGE_DIRECTORY, image)
-            image_path_with_quote = add_text_to_image(quote.text, image_path)
+            image_path_with_quote = add_text_to_image(self.remove_html_tags(quote.text), image_path)
+
+            if quote.image:
+                image_path = quote.image.path
+                os.remove(image_path)
+                quote.image = None
             
             with open(image_path_with_quote, 'rb') as f:
                 quote.image.save(f'{quote.text}.webp', File(f))
